@@ -1,0 +1,26 @@
+.page {
+    background-color: #000;
+    max-width: 69%;
+    min-width: 320px;
+    margin: auto;
+    color: #FFFFFF;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+}
+
+.header {
+    display: flex;
+    height: 74px;
+    margin: 45px auto 40px auto;
+    border-bottom: 1px solid #545454;
+}
+.logo {
+    display: flex;
+    max-width: 142px;
+    object-fit: cover;
+    align-self: flex-start;
+}
+
