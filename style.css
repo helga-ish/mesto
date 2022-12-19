@@ -133,7 +133,7 @@
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 50%);
-    display: flex;
+    display: none;
 
 }
 .form__toggle {
@@ -141,9 +141,8 @@
     height: 32px;
     background-color: none;
     position: absolute;
-    top: 155px;
-    right: 385px;
-    display: flex;
+    top: -40px;
+    right: -40px;
     cursor: pointer;
     transition: opacity .4s;
   }
@@ -169,6 +168,7 @@
     background-color: #FFFFFF;
     margin: auto;
     border-radius: 10px;
+    position: relative;
   }
   .edit-form {
     width: 100%;
@@ -198,3 +198,27 @@
   .edit-form__field_name {
     margin-bottom: 30px;
   }
+
+.edit-form__handler {
+    border: none;
+    margin-top: 48px;
+    padding: 0;
+}
+.edit-form__button {
+    width: 358px;
+    height: 50px;
+    font-size: 14px;
+    border: none;
+    margin: 0;
+    margin-left: 36px;
+    margin-bottom: 37px;
+    background-color: #000;
+    cursor: pointer;
+    transition: opacity .4s;
+    color: white;
+    padding: 0;
+}
+  
+.edit-form__button:hover {
+    opacity: .8;
+}
