@@ -122,13 +122,24 @@
     display: flex;
     justify-self: flex-end;
     padding-top: 15px;
+    cursor: pointer;
+    transition: opacity .4s;
 }
+.profile__edit-button:hover {
+    opacity: .6;
+}
+
 .profile__add-button {
     position: absolute;
     right: 0;
     top: 36px;
     width: 150px;
     height: 50px;
+    cursor: pointer;
+    transition: opacity .4s;
+}
+.profile__add-button:hover {
+    opacity: .6;
 }
 
 .form {
