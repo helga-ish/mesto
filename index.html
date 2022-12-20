@@ -2,7 +2,7 @@
 <html lang="ru">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-dcale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Место</title>
         <link rel="stylesheet" href="./style.css">
         <link rel="stylesheet" href="./pages/index.css">
@@ -13,6 +13,16 @@
         </header>
 
         <main class="main">
+
+            <section class="profile">
+                <img class="profile__avatar" src="./images/profile_avatar.jpg" alt="фото автора">
+                <div class="profile__info">
+                    <p class="profile__field-name">Helga_Ish</p>
+                    <img class="profile__edit-button" src="./images/edit_button.svg" alt="кнопка редактирования">
+                    <p class="profile__field-about">Экспат, лингвист и просто хороший человек</p>
+                </div>
+                    <img class="profile__add-button" src="./images/add_button.svg" alt="кнопка добавления">
+            </section>
 
             <section class="form">
                 <div class="form__container">
@@ -31,17 +41,6 @@
                     </form>
                 </div>
                 
-            </section>
-
-
-            <section class="profile">
-                <img class="profile__avatar" src="./images/profile_avatar.jpg" alt="фото автора">
-                <div class="profile__info">
-                    <p class="profile__field-name">Helga_Ish</p>
-                    <img class="profile__edit-button" src="./images/edit_button.svg" alt="кнопка редактирования">
-                    <p class="profile__field-about">Экспат, лингвист и просто хороший человек</p>
-                </div>
-                    <img class="profile__add-button" src="./images/add_button.svg" alt="кнопка добавления">
             </section>
 
             <section class="gallery">
@@ -94,6 +93,8 @@
         <footer class="footer">
             <p class="footer__text">© 2020 Mesto Russia</p>
         </footer>
-
+        <script src='./script.js'></script>
     </body>
 </html>
+
+<!-- don't forget to finish form -->

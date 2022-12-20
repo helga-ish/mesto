@@ -170,8 +170,12 @@
     left: 0;
     background-color: rgba(0, 0, 0, 50%);
     display: none;
-
 }
+
+.form_active {
+    display: flex;
+}
+
 .form__toggle {
     width: 32px;
     height: 32px;
