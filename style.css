@@ -235,7 +235,7 @@
     font-family: inherit;
     color: #000;
   }
-  .edit-form__field_name {
+.edit-form__field_name {
     margin-bottom: 30px;
   }
 
@@ -247,7 +247,10 @@
 .edit-form__button {
     width: 358px;
     height: 50px;
-    font-size: 14px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
     border: none;
     margin: 0;
     margin-left: 36px;
