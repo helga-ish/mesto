@@ -61,6 +61,26 @@
     overflow: hidden;
     padding: 0;
 }
+.gallery__card-like {
+    width: 22px;
+    height: 19px;
+    display: flex;
+    align-self: center;
+    cursor: pointer;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.gallery__card-like_disabled {
+    background-image: url(./images/like_button.svg);
+    transition: opacity .4s;
+}
+
+.gallery__card-like_disabled:hover {
+    opacity: .5;
+}
+.gallery__card-like_active {
+    background-image: url(./images/like_button-active.svg);
+}
 
 .footer {
     margin: 67px auto 60px auto;
