@@ -13,8 +13,9 @@
 
 .header {
     display: flex;
+    max-width: 880px;
     height: 74px;
-    margin: 45px auto 40px auto;
+    margin: 45px auto 39px auto;
     border-bottom: 1px solid #545454;
 }
 .logo {
@@ -32,7 +33,7 @@
     column-gap: 17px;
 }
 .gallery__card {
-    height: 363px;
+    height: 361px;
     width: 282px;
     border-radius: 10px;
     display: flex;
@@ -47,7 +48,7 @@
     border-radius: 10px 10px 0px 0px;
 }
 .gallery__card-container {
-    margin: auto 30px auto 21px;
+    margin: auto 20px auto 21px;
     display: flex;
     justify-content: space-between;
 }
@@ -69,6 +70,7 @@
     cursor: pointer;
     background-position: center;
     background-repeat: no-repeat;
+    margin-left: 30px;
 }
 .gallery__card-like_disabled {
     background-image: url(./images/like_button.svg);
@@ -84,8 +86,6 @@
 
 .footer {
     margin: 67px auto 60px auto;
-    display: flex;
-    justify-content: flex-start;
 }
 .footer__text {
     color: #545454;
@@ -96,8 +96,8 @@
 }
 
 .profile {
-    margin: 0px auto 50px auto;
-    max-width: 100%;
+    margin: 0px auto 47px auto;
+    max-width: 880px;
     display: flex;
     position: relative;
 }
@@ -108,13 +108,12 @@
 }
 .profile__info {
     color: #FFFFFF;
-    margin: 0 0 0 30px;
+    margin: 23px 0 0 30px;
     display: grid;
     max-width: 336px;
     grid-template-columns: 1fr auto;
     grid-template-rows: 1fr 1fr;
-    row-gap: 16px;
-    column-gap: 18px;
+    row-gap: 7px;
 
 }
 .profile__field-name {
@@ -140,16 +139,17 @@
     width: 24px;
     height: 24px;
     display: flex;
-    justify-self: flex-end;
-    padding-top: 15px;
+    align-self: center;
     cursor: pointer;
     transition: opacity .4s;
+    margin-left: 18px;
 }
 .profile__edit-button:hover {
     opacity: .6;
 }
 
 .profile__add-button {
+    background-image: url(./images/add_button.svg);
     position: absolute;
     right: 0;
     top: 36px;
@@ -234,6 +234,11 @@
     line-height: 17px;
     font-family: inherit;
     color: #000;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
   }
 .edit-form__field_name {
     margin-bottom: 30px;
@@ -264,4 +269,126 @@
   
 .edit-form__button:hover {
     opacity: .8;
+}
+
+@media screen and (max-width: 920px) {
+    .header {
+        margin-left: 27px;
+        margin-right: 27px;
+    }
+
+    .profile {
+        margin-left: 19px;
+        margin-right: 19px;
+    }
+
+    .gallery {
+        max-width: fit-content;
+        margin: auto;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer {
+        margin-left: 27px;
+        margin-right: 27px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .header {
+        margin-top: 28px;
+        height: 55px;
+    }
+    .logo {
+        max-width: 104px;
+    }
+
+    .profile {
+        flex-direction: column;
+        align-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 36px;
+    }
+    .profile__avatar {
+        display: flex;
+        align-self: center;
+        margin-bottom: 26px;
+    }
+    .profile__info {
+        max-width: 282px;
+        margin: 0;
+        grid-template-rows: auto auto;
+    }
+    .profile__field-name {
+        text-align: center;
+        font-size: 27px;
+        line-height: 33px;
+    }
+    .profile__field-about {
+        text-align: center;
+        font-size: 14px;
+        line-height: 17px;
+    }
+    .profile__edit-button {
+        width: 18px;
+        height: 18px;
+    }
+
+    .profile__add-button {
+        background-image: url(./images/add_button_big.svg);
+        width: 282px;
+        position: static;
+        display: flex;
+        align-self: center;
+        margin-top: 36px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .popup__container {
+        width: 282px;
+        height: 322px;
+    }
+
+    .popup__toggle {
+        width: 20px;
+        height: 20px;
+        top: -36px;
+        right: 0; 
+    }
+
+
+    .edit-form__heading {
+        font-size: 18px;
+        line-height: 22px;
+        margin-top: 25px;
+        margin-left: 22px;
+    }
+
+    .edit-form__fields {
+        width: 238px;
+        margin-top: 78px;
+        margin-bottom: 45px;
+    }
+
+    .edit-form__button {
+        width: 238px;
+        height: 46px;
+        font-size: 14px;
+        line-height: 17px;
+        margin-left: 22px;
+        margin-bottom: 25px;
+    }
+
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .footer {
+        margin: 48px 19px 36px 19px;
+    }
+    .footer__text {
+        font-size: 14px;
+        line-height: 17px;
+    }
 }
