@@ -1,0 +1,5 @@
+.gallery__card-container {
+    margin: auto 20px auto 21px;
+    display: flex;
+    justify-content: space-between;
+}

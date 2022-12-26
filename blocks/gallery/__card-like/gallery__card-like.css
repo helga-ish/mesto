@@ -1,0 +1,10 @@
+.gallery__card-like {
+    width: 22px;
+    height: 19px;
+    display: flex;
+    align-self: center;
+    cursor: pointer;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-left: 30px;
+}

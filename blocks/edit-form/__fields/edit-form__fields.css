@@ -1,0 +1,15 @@
+
+  .edit-form__fields {
+    width: 358px;
+    margin: 54px auto 48px auto;
+    border: 0;
+    padding: 0;
+  }
+
+  @media screen and (max-width: 600px) {
+    .edit-form__fields {
+        width: 238px;
+        margin-top: 78px;
+        margin-bottom: 45px;
+    }
+}
