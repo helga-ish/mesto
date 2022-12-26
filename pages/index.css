@@ -14,6 +14,12 @@
 @import url(../blocks/popup/__toggle-image/popup__toggle-image.css);
 
 @import url(../blocks/edit-form/edit-form.css);
+@import url(../blocks/edit-form/__heading/edit-form__heading.css);
+@import url(../blocks/edit-form/__handler/edit-form__handler.css);
+@import url(../blocks/edit-form/__fields/edit-form__fields.css);
+@import url(../blocks/edit-form/__field/edit-form__field.css);
+@import url(../blocks/edit-form/__field/_name/edit-form__field_name.css);
+@import url(../blocks/edit-form/__button/edit-form__button.css);
 
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
