@@ -23,21 +23,6 @@
                 <button class="profile__add-button" type="button"></button>
             </section>
 
-            <section class="popup">
-                <div class="popup__container">
-                    <button class="popup__toggle" type="button"></button>
-                    <form class="edit-form">
-                        <h2 class="edit-form__heading">Редактировать профиль</h2>
-                        <fieldset class="edit-form__fields">
-                            <input type="text" class="edit-form__field edit-form__field_name">
-                            <input type="text" class="edit-form__field edit-form__field_about">
-                        </fieldset>
-                        <button type="submit" class="edit-form__button">Сохранить</button>
-                    </form>
-                </div>
-                
-            </section>
-
             <section class="gallery">
                 <div class="gallery__card">
                     <img class="gallery__card-image" src="./images/istanbul.jpg" alt="стамбул фатих мечеть">
@@ -84,6 +69,20 @@
             </section>
 
         </main>
+
+        <section class="popup">
+            <div class="popup__container">
+                <button class="popup__toggle" type="button"></button>
+                <form class="edit-form" name="editForm">
+                    <h2 class="edit-form__heading">Редактировать профиль</h2>
+                    <fieldset class="edit-form__fields">
+                        <input type="text" class="edit-form__field edit-form__field_type_name" name="inputName">
+                        <input type="text" class="edit-form__field edit-form__field_type_about" name="inputAbout">
+                    </fieldset>
+                    <button type="submit" class="edit-form__button">Сохранить</button>
+                </form>
+            </div>
+        </section>
 
         <footer class="footer">
             <p class="footer__text">© 2020 Mesto Russia</p>

@@ -3,8 +3,8 @@ let popupElement = document.querySelector('.popup');
 let popupToggle = document.querySelector('.popup__toggle');
 
 let submitButton = document.querySelector('.edit-form__button');
-let inputName = document.querySelector('.edit-form__field_name');
-let inputAbout = document.querySelector('.edit-form__field_about');
+let inputName = document.querySelector('.edit-form__field_type_name');
+let inputAbout = document.querySelector('.edit-form__field_type_about');
 let profileName = document.querySelector('.profile__field-name');
 let profileAbout = document.querySelector('.profile__field-about');
 

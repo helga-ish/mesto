@@ -15,5 +15,6 @@
     white-space: nowrap;
     overflow: hidden;
     padding: 0;
+    padding-bottom: 13px;
     margin: 0;
   }
