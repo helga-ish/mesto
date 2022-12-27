@@ -16,7 +16,7 @@
 @import url(../blocks/edit-form/__heading/edit-form__heading.css);
 @import url(../blocks/edit-form/__fields/edit-form__fields.css);
 @import url(../blocks/edit-form/__field/edit-form__field.css);
-@import url(../blocks/edit-form/__field/_type_name/edit-form__field_type_name.css);
+@import url(../blocks/edit-form/__field/_type/edit-form__field_type_name.css);
 @import url(../blocks/edit-form/__button/edit-form__button.css);
 
 @import url(../blocks/profile/profile.css);
