@@ -1,8 +1,0 @@
-.gallery__card-like_disabled {
-    background-image: url(../../../../images/like_button.svg);
-    transition: opacity .4s;
-}
-
-.gallery__card-like_disabled:hover {
-    opacity: .5;
-}

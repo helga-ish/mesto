@@ -1,12 +1,18 @@
 .popup__toggle {
-    width: 32px;
-    height: 32px;
-    background-color: none;
-    position: absolute;
-    top: -40px;
-    right: -40px;
-    cursor: pointer;
-    transition: opacity .4s;
+  outline: none;
+  border: none;
+  background-color: currentColor;
+  background-image: url('../../../images/form_toggle.svg');
+  background-size: cover;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  background-color: none;
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  cursor: pointer;
+  transition: opacity .4s;
   }
   
   .popup__toggle:hover {
