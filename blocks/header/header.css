@@ -1,9 +1,9 @@
 .header {
     display: flex;
     max-width: 880px;
-    height: 74px;
+    min-height: 74px;
     margin: 45px auto 39px auto;
-    border-bottom: 1px solid #545454;
+    border-bottom: 1px solid rgba(84, 84, 84, .7);
 }
 
 @media screen and (max-width: 920px) {
@@ -15,7 +15,10 @@
 
 @media screen and (max-width: 700px) {
     .header {
+        width: 100%;
         margin-top: 28px;
-        height: 55px;
+        margin-left: 0;
+        margin-right: 0;
+        min-height: 55px;
     }
 }
