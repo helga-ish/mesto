@@ -1,4 +1,4 @@
-.gallery__card-like {
+.card__like {
     background-image: url(../../../images/like_button.svg);
     outline: none;
     border: none;
@@ -13,6 +13,6 @@
     margin-left: 30px;
     transition: opacity .4s;
 }
-.gallery__card-like:hover {
+.card__like:hover {
     opacity: .5;
 }

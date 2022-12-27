@@ -1,6 +1,7 @@
-.gallery__card {
-    height: 361px;
-    width: 282px;
+.card {
+    list-style: none;
+    min-height: 361px;
+    width: 100%;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
