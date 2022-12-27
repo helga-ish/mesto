@@ -8,6 +8,8 @@ let inputAbout = document.querySelector('.edit-form__field_about');
 let profileName = document.querySelector('.profile__field-name');
 let profileAbout = document.querySelector('.profile__field-about');
 
+let editForm = document.querySelector('.edit-form');
+
 function popupOpen() {
     popupElement.classList.add('popup_active');
     inputName.value = profileName.textContent;
@@ -29,4 +31,4 @@ function handleFormSubmit (evt) {
     profileAbout.textContent = inputAbout.value;
     popupClose();
 }
-popupElement.addEventListener('submit', handleFormSubmit);
+editForm.addEventListener('submit', handleFormSubmit);
