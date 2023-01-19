@@ -32,3 +32,11 @@ function handleFormSubmit (evt) {
     popupClose();
 }
 editForm.addEventListener('submit', handleFormSubmit);
+
+
+const likeButtons = document.querySelectorAll('.card__like');
+likeButtons.forEach(like => {
+    like.addEventListener("click", (event) => {
+        event.target.classList.toggle("card__like_active");
+    });
+});
