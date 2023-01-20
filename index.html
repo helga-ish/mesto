@@ -25,48 +25,7 @@
 
             <section class="gallery">
                 <ul class="gallery__list">
-                    <li class="card">
-                        <img class="card__image" src="./images/istanbul.jpg" alt="стамбул фатих мечеть">
-                        <div class="card__container">
-                            <h2 class="card__name">Стамбул</h2>
-                            <button class="card__like" type="button"></button>
-                        </div>
-                    </li>
-                    <li class="card">
-                        <img class="card__image" src="./images/kuala-lumpur.jpg" alt="куала-лумпур башни петронас">
-                        <div class="card__container">
-                            <h2 class="card__name">Куала-Лумпур</h2>
-                            <button class="card__like" type="button"></button>
-                        </div>
-                    </li>
-                    <li class="card">
-                        <img class="card__image" src="./images/porvoo.jpg" alt="порвоо домик">
-                        <div class="card__container">
-                            <h2 class="card__name">Порвоо</h2>
-                            <button class="card__like" type="button"></button>
-                        </div>
-                    </li>
-                    <li class="card">
-                        <img class="card__image" src="./images/stockholm.jpg" alt="стокгольм панорама">
-                        <div class="card__container">
-                            <h2 class="card__name">Стокгольм</h2>
-                            <button class="card__like" type="button"></button>
-                        </div>
-                    </li>
-                    <li class="card">
-                        <img class="card__image" src="./images/svaneti.jpg" alt="сванетия природа">
-                        <div class="card__container">
-                            <h2 class="card__name">Сванетия</h2>
-                            <button class="card__like" type="button"></button>
-                        </div>
-                    </li>
-                    <li class="card">
-                        <img class="card__image" src="./images/tokyo.jpg" alt="токио улочка">
-                        <div class="card__container">
-                            <h2 class="card__name">Токио</h2>
-                            <button class="card__like" type="button"></button>
-                        </div>
-                    </li>
+                    
                 </ul>
                 
             </section>
@@ -86,6 +45,30 @@
                 </form>
             </div>
         </section>
+
+        <section class="add-popup">
+            <div class="add-popup__container">
+                <button class="add-popup__toggle" type="button"></button>
+                <form class="add-form" name="addForm">
+                    <h2 class="add-form__heading">Новое место</h2>
+                    <fieldset class="add-form__fields">
+                        <input type="text" class="add-form__field add-form__field_type_card-name" name="inputCardName">
+                        <input type="text" class="add-form__field add-form__field_type_link" name="inputLink">
+                    </fieldset>
+                    <button type="submit" class="add-form__button">Отправить</button>
+                </form>
+            </div>
+        </section>
+
+        <template id="new-card">
+            <li class="card">
+                <img class="card__image" src="" alt="">
+                <div class="card__container">
+                    <h2 class="card__name"></h2>
+                    <button class="card__like" type="button"></button>
+                </div>
+            </li>
+        </template>
 
         <footer class="footer">
             <p class="footer__text">© 2020 Mesto Russia</p>
