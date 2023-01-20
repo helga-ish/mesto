@@ -35,6 +35,7 @@ editForm.addEventListener('submit', handleFormSubmit);
 
 const cardTemplate = document.querySelector('#new-card').content;
 const cardGallery = document.querySelector('.gallery__list');
+// const cardRemove = document.querySelector('.card__remove');
 const initialCards = [
     {
       name: 'Стамбул',
