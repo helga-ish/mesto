@@ -35,7 +35,7 @@ editForm.addEventListener('submit', handleFormSubmit);
 
 const cardTemplate = document.querySelector('#new-card').content;
 const cardGallery = document.querySelector('.gallery__list');
-// const cardRemove = document.querySelector('.card__remove');
+
 const initialCards = [
     {
       name: 'Стамбул',
@@ -118,3 +118,13 @@ likeButtons.forEach(like => {
 
 // not done:
 // * like for a new card doesn't work;
+
+// remove card:
+
+const cardRemove = document.querySelectorAll('.card__remove');
+cardRemove.forEach(trash => {
+    trash.addEventListener("click", function() {
+        const cardItem = document.querySelector('.card');
+        cardItem.remove();
+    });
+});
