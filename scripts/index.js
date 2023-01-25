@@ -33,8 +33,8 @@ editForm.addEventListener('submit', handleFormSubmit);
 
 //showing 6 initial cards:
 
-const cardTemplate = document.querySelector('#new-card').content;
-const cardGallery = document.querySelector('.gallery__list');
+let cardTemplate = document.querySelector('#new-card').content;
+let cardGallery = document.querySelector('.gallery__list');
 
 const initialCards = [
     {
@@ -67,7 +67,6 @@ const initialCards = [
     const cardElement = cardTemplate.cloneNode(true);
     cardElement.querySelector('.card__name').textContent = element.name;
     cardElement.querySelector('.card__image').src = element.link;
-  
     cardGallery.append(cardElement);
   });
 
@@ -104,20 +103,25 @@ function handleAddFormSubmit (evt) {
     cardElement.querySelector('.card__name').textContent = inputCardName.value;
     cardGallery.prepend(cardElement); 
     closeAddPopup();
-}
+    const likeNewButton = cardElement.querySelector('.card__like');
+    likeNewButton.addEventListener('click', (event) => {
+        event.target.classList.toggle("card__like_active");
+    });
+    const removeNewButton = cardElement.querySelector('.card__remove');
+    removeNewButton.addEventListener('click', function() {
+        cardElement.remove();
+    });
+};
 addForm.addEventListener('submit', handleAddFormSubmit);
 
 // put like:
 
-const likeButtons = document.querySelectorAll('.card__like');
-likeButtons.forEach(like => {
+const likeInitialButtons = document.querySelectorAll('.card__like');
+likeInitialButtons.forEach(like => {
     like.addEventListener("click", (event) => {
         event.target.classList.toggle("card__like_active");
     });
 });
-
-// not done:
-// * like for a new card doesn't work;
 
 // remove card:
 
@@ -128,3 +132,44 @@ cardRemove.forEach(trash => {
         cardItem.remove();
     });
 });
+
+// popup card:
+
+const cardItem = document.querySelectorAll('.card');
+cardItem.forEach((item) => {
+    const cardPopup = document.querySelector('.card-popup');
+    const cardImage = document.querySelectorAll('.card__image');
+    const cardName = document.querySelectorAll('.card__name');
+
+        cardImage.forEach(image => {
+        image.addEventListener('click', function() {
+            cardPopup.classList.add('card-popup_active');
+            cardPopup.querySelector('.card-popup__image').src = image.src;
+            cardPopup.querySelector('.card-popup__heading').textContent = cardName.textContent;
+            });
+        });
+    let cardPopupToggle = document.querySelector('.card-popup__toggle');
+    cardPopupToggle.addEventListener('click', function() {
+        cardPopup.classList.remove('card-popup_active');
+    });
+
+});
+
+// const cardImage = document.querySelectorAll('.card__image');
+// cardImage.forEach(img => {
+//     let cardPopupImageLink = document.querySelector('.card-popup__image');
+//     let cardPopupImageName = document.querySelector('.card-popup__heading');
+//     let cardPopupToggle = document.querySelector('.card-popup__toggle');
+//     let cardPopup = document.querySelector('.card-popup');
+//     const cardName = document.querySelectorAll('.card__name');
+//     img.addEventListener('click', function() {
+//         cardPopup.classList.add('card-popup_active');
+//         let cardImageLink = img.src;
+//     let cardImageName = cardName.textContent;
+//     cardPopupImageLink = cardImageLink;
+//     cardPopupImageName = cardImageName;
+//     cardPopupToggle.addEventListener('click', function() {
+//         cardPopup.classList.remove('card-popup_active');
+//     });
+//     });
+// });
