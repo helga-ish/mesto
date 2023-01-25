@@ -96,6 +96,9 @@ addPopupToggle.addEventListener('click', closeAddPopup);
 
 // add new card button:
 
+let cardPopupToggle = document.querySelector('.card-popup__toggle');
+let cardPopup = document.querySelector('.card-popup');
+
 function handleAddFormSubmit (evt) {
     evt.preventDefault();
     const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
@@ -110,6 +113,15 @@ function handleAddFormSubmit (evt) {
     const removeNewButton = cardElement.querySelector('.card__remove');
     removeNewButton.addEventListener('click', function() {
         cardElement.remove();
+    });
+    const cardElementImage = cardElement.querySelector('.card__image');
+    cardElementImage.addEventListener('click', function() {
+        cardPopup.classList.add('card-popup_active');
+        cardPopupToggle.addEventListener('click', function() {
+            cardPopup.classList.remove('card-popup_active');
+        });
+        cardPopup.querySelector('.card-popup__image').src = cardElement.querySelector('.card__image').src;
+        cardPopup.querySelector('.card-popup__heading').textContent = cardElement.querySelector('.card__name').textContent;
     });
 };
 addForm.addEventListener('submit', handleAddFormSubmit);
@@ -137,7 +149,6 @@ cardRemove.forEach(trash => {
 
 const cardItem = document.querySelectorAll('.card');
 cardItem.forEach((item) => {
-    const cardPopup = document.querySelector('.card-popup');
     const cardImage = document.querySelectorAll('.card__image');
     const cardName = document.querySelectorAll('.card__name');
 
@@ -148,7 +159,6 @@ cardItem.forEach((item) => {
             cardPopup.querySelector('.card-popup__heading').textContent = cardName.textContent;
             });
         });
-    let cardPopupToggle = document.querySelector('.card-popup__toggle');
     cardPopupToggle.addEventListener('click', function() {
         cardPopup.classList.remove('card-popup_active');
     });
@@ -173,3 +183,6 @@ cardItem.forEach((item) => {
 //     });
 //     });
 // });
+
+// cards remove from the beginning
+// don't get the name of the cards
