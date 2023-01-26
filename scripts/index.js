@@ -140,8 +140,7 @@ likeInitialButtons.forEach(like => {
 const cardRemove = document.querySelectorAll('.card__remove');
 cardRemove.forEach(trash => {
     trash.addEventListener("click", function() {
-        const cardItem = document.querySelector('.card');
-        cardItem.remove();
+        this.parentNode.remove();
     });
 });
 
@@ -158,10 +157,11 @@ cardItem.forEach((item) => {
             cardPopup.querySelector('.card-popup__image').src = image.src;
             cardPopup.querySelector('.card-popup__heading').textContent = cardName.textContent;
             });
+            cardPopupToggle.addEventListener('click', function() {
+                cardPopup.classList.remove('card-popup_active');
+            });
         });
-    cardPopupToggle.addEventListener('click', function() {
-        cardPopup.classList.remove('card-popup_active');
-    });
+
 
 });
 
