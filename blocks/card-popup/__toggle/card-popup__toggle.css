@@ -17,3 +17,12 @@
     .card-popup__toggle:hover {
       opacity: .6;
     }
+
+    @media screen and (max-width: 600px) {
+      .card-popup__toggle {
+          width: 20px;
+          height: 20px;
+          top: -36px;
+          right: 0; 
+      }
+  }
