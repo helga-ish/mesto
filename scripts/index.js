@@ -67,6 +67,7 @@ const initialCards = [
     const cardElement = cardTemplate.cloneNode(true);
     cardElement.querySelector('.card__name').textContent = element.name;
     cardElement.querySelector('.card__image').src = element.link;
+    cardElement.querySelector('.card__image').alt = 'фотография' + element.name;
     cardGallery.append(cardElement);
   });
 
@@ -121,6 +122,7 @@ function handleAddFormSubmit (evt) {
             cardPopup.classList.remove('card-popup_active');
         });
         cardPopup.querySelector('.card-popup__image').src = cardElement.querySelector('.card__image').src;
+        cardPopup.querySelector('.card-popup__image').alt = 'фотография' + cardElement.querySelector('.card__image').alt;
         cardPopup.querySelector('.card-popup__heading').textContent = cardElement.querySelector('.card__name').textContent;
     });
 };
@@ -148,41 +150,15 @@ cardRemove.forEach(trash => {
 
 const cardItem = document.querySelectorAll('.card');
 cardItem.forEach((item) => {
-    const cardImage = document.querySelectorAll('.card__image');
-    const cardName = document.querySelectorAll('.card__name');
-
-        cardImage.forEach(image => {
-        image.addEventListener('click', function() {
+    let cardImage = item.querySelector('.card__image');
+    let cardName = item.querySelector('.card__name');
+    cardImage.addEventListener('click', function() {
             cardPopup.classList.add('card-popup_active');
-            cardPopup.querySelector('.card-popup__image').src = image.src;
+            cardPopup.querySelector('.card-popup__image').src = cardImage.src;
+            cardPopup.querySelector('.card-popup__image').alt = 'фотография' + cardImage.alt;
             cardPopup.querySelector('.card-popup__heading').textContent = cardName.textContent;
             });
             cardPopupToggle.addEventListener('click', function() {
                 cardPopup.classList.remove('card-popup_active');
             });
-        });
-
-
-});
-
-// const cardImage = document.querySelectorAll('.card__image');
-// cardImage.forEach(img => {
-//     let cardPopupImageLink = document.querySelector('.card-popup__image');
-//     let cardPopupImageName = document.querySelector('.card-popup__heading');
-//     let cardPopupToggle = document.querySelector('.card-popup__toggle');
-//     let cardPopup = document.querySelector('.card-popup');
-//     const cardName = document.querySelectorAll('.card__name');
-//     img.addEventListener('click', function() {
-//         cardPopup.classList.add('card-popup_active');
-//         let cardImageLink = img.src;
-//     let cardImageName = cardName.textContent;
-//     cardPopupImageLink = cardImageLink;
-//     cardPopupImageName = cardImageName;
-//     cardPopupToggle.addEventListener('click', function() {
-//         cardPopup.classList.remove('card-popup_active');
-//     });
-//     });
-// });
-
-// cards remove from the beginning
-// don't get the name of the cards for cardPopup + css
+    });
