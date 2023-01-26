@@ -1,7 +1,6 @@
 .card-popup__container {
     max-width: fit-content;
     min-height: fit-content;
-    background-color: #FFFFFF;
     margin: auto;
     border-radius: 10px;
     position: relative;

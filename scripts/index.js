@@ -185,4 +185,4 @@ cardItem.forEach((item) => {
 // });
 
 // cards remove from the beginning
-// don't get the name of the cards
+// don't get the name of the cards for cardPopup + css
