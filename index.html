@@ -32,37 +32,37 @@
 
         </main>
 
-        <section class="popup">
+        <section class="popup popup_edit">
             <div class="popup__container">
                 <button class="popup__toggle" type="button"></button>
                 <form class="edit-form" name="editForm">
                     <h2 class="edit-form__heading">Редактировать профиль</h2>
                     <fieldset class="edit-form__fields">
-                        <input type="text" class="edit-form__field edit-form__field_type_name" name="inputName">
-                        <input type="text" class="edit-form__field edit-form__field_type_about" name="inputAbout">
+                        <input type="text" class="edit-form__field edit-form__field_type_name" name="inputName" placeholder="Имя">
+                        <input type="text" class="edit-form__field edit-form__field_type_about" name="inputAbout" placeholder="Обо мне">
                     </fieldset>
                     <button type="submit" class="edit-form__button">Сохранить</button>
                 </form>
             </div>
         </section>
 
-        <section class="add-popup">
+        <section class="popup popup_add">
             <div class="add-popup__container">
                 <button class="add-popup__toggle" type="button"></button>
                 <form class="add-form" name="addForm">
                     <h2 class="add-form__heading">Новое место</h2>
                     <fieldset class="add-form__fields">
-                        <input type="text" class="add-form__field add-form__field_type_card-name" name="inputCardName">
-                        <input type="text" class="add-form__field add-form__field_type_link" name="inputLink">
+                        <input type="text" class="add-form__field add-form__field_type_card-name" name="inputCardName" placeholder="Название">
+                        <input type="text" class="add-form__field add-form__field_type_link" name="inputLink" placeholder="Ссылка">
                     </fieldset>
                     <button type="submit" class="add-form__button">Отправить</button>
                 </form>
             </div>
         </section>
 
-        <section class="card-popup">
+        <section class="popup popup_new-card">
             <div class="card-popup__container">
-                <img class="card-popup__image" src="..." alt="">
+                <img class="card-popup__image" src="/" alt="">
                 <h2 class="card-popup__heading"></h2>
                 <button class="card-popup__toggle" type="button"></button>
             </div>
@@ -70,7 +70,7 @@
 
         <template id="new-card">
             <li class="card">
-                <img class="card__image" src="..." alt="">
+                <img class="card__image" src="/" alt="">
                 <button class="card__remove" type="button"></button>
                 <div class="card__container">
                     <h2 class="card__name"></h2>
