@@ -1,4 +1,4 @@
-.add-popup__container {
+.popup_add_container {
     max-width: 430px;
     min-height: 330px;
     background-color: #FFFFFF;
@@ -8,7 +8,7 @@
   }
 
   @media screen and (max-width: 600px) {
-    .add-popup__container {
+    .popup_add_container {
         max-width: 282px;
         min-height: 322px;
     }
