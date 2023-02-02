@@ -29,7 +29,7 @@ const initialCards = [
 // initialisation:
 const editButton = document.querySelector('.profile__edit-button');
 const editPopup = document.querySelector('.popup_edit');
-const editPopupToggle = document.querySelector('.popup_edit_toggle');
+const editPopupToggle = document.querySelector('.popup-edit__toggle');
 
 const inputName = document.querySelector('.edit-form__field_type_name');
 const inputAbout = document.querySelector('.edit-form__field_type_about');
@@ -38,12 +38,12 @@ const profileAbout = document.querySelector('.profile__field-about');
 
 const editForm = document.querySelector('.edit-form');
 
-const cardPopupToggle = document.querySelector('.popup_card_toggle');
+const cardPopupToggle = document.querySelector('.popup-card__toggle');
 const cardPopup = document.querySelector('.popup_card');
 
 const addButton = document.querySelector('.profile__add-button');
 const addPopup = document.querySelector('.popup_add');
-const addPopupToggle = document.querySelector('.popup_add_toggle');
+const addPopupToggle = document.querySelector('.popup-add__toggle');
 
 const inputCardName = document.querySelector('.add-form__field_type_card-name');
 const inputLink = document.querySelector('.add-form__field_type_link');
@@ -53,8 +53,8 @@ const addForm = document.querySelector('.add-form');
 const cardTemplate = document.querySelector('#new-card').content;
 const cardGallery = document.querySelector('.gallery__list');
 
-const cardPopupImage = cardPopup.querySelector('.popup_card_image');
-const cardPopupHeading = cardPopup.querySelector('.popup_card_heading');
+const cardPopupImage = cardPopup.querySelector('.popup-card__image');
+const cardPopupHeading = cardPopup.querySelector('.popup-card__heading');
 
 // function for opening and closing popups
 function openPopup(popup) {

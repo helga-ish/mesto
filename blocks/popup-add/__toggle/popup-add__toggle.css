@@ -1,4 +1,4 @@
-.popup_add_toggle {
+.popup-add__toggle {
     outline: none;
     border: none;
     background-color: transparent;
@@ -14,12 +14,12 @@
     transition: opacity .4s;
     }
     
-    .popup_add_toggle:hover {
+    .popup-add__toggle:hover {
       opacity: .6;
     }
   
     @media screen and (max-width: 600px) {
-      .popup_add_toggle {
+      .popup-add__toggle {
           width: 20px;
           height: 20px;
           top: -36px;

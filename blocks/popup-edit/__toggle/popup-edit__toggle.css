@@ -1,4 +1,4 @@
-.popup_edit_toggle {
+.popup-edit__toggle {
     outline: none;
     border: none;
     background-color: transparent;
@@ -14,12 +14,12 @@
     transition: opacity .4s;
     }
     
-    .popup_edit_toggle:hover {
+    .popup-edit__toggle:hover {
       opacity: .6;
     }
   
     @media screen and (max-width: 600px) {
-      .popup_edit_toggle {
+      .popup-edit__toggle {
           width: 20px;
           height: 20px;
           top: -36px;
