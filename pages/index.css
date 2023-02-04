@@ -9,26 +9,22 @@
 
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/_active/popup_active.css);
+@import url(../blocks/popup/_card/popup_card.css);
+@import url(../blocks/popup/__container/popup__container.css);
 
-@import url(../blocks/popup-edit/popup-edit.css);
 @import url(../blocks/popup-edit/__toggle/popup-edit__toggle.css);
 
-@import url(../blocks/edit-form/edit-form.css);
-@import url(../blocks/edit-form/__heading/edit-form__heading.css);
-@import url(../blocks/edit-form/__fields/edit-form__fields.css);
-@import url(../blocks/edit-form/__field/edit-form__field.css);
-@import url(../blocks/edit-form/__field/_type/edit-form__field_type_name.css);
-@import url(../blocks/edit-form/__button/edit-form__button.css);
 
-@import url(../blocks/popup-add/popup-add.css);
 @import url(../blocks/popup-add/__toggle/popup-add__toggle.css);
 
-@import url(../blocks/add-form/add-form.css);
-@import url(../blocks/add-form/__heading/add-form__heading.css);
-@import url(../blocks/add-form/__fields/add-form__fields.css);
-@import url(../blocks/add-form/__field/add-form__field.css);
-@import url(../blocks/add-form/__field/_type/add-form__field_type_card-name.css);
-@import url(../blocks/add-form/__button/add-form__button.css);
+@import url(../blocks/form/form.css);
+@import url(../blocks/form/__heading/form__heading.css);
+@import url(../blocks/form/__fields/form__fields.css);
+@import url(../blocks/form/__field/form__field.css);
+@import url(../blocks/form/__field/_type/form__field_type_card-name.css);
+@import url(../blocks/form/__field/_type/form__filed_type_name.css);
+
+@import url(../blocks/form-button/form-button.css);
 
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);

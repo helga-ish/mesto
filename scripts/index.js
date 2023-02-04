@@ -28,15 +28,16 @@ const initialCards = [
 
 // initialisation:
 const editButton = document.querySelector('.profile__edit-button');
-const editPopup = document.querySelector('.popup_edit');
-const editPopupToggle = document.querySelector('.popup-edit__toggle');
-
-const inputName = document.querySelector('.edit-form__field_type_name');
-const inputAbout = document.querySelector('.edit-form__field_type_about');
 const profileName = document.querySelector('.profile__field-name');
 const profileAbout = document.querySelector('.profile__field-about');
 
-const editForm = document.querySelector('.edit-form');
+const editPopup = document.querySelector('.popup_edit');
+const editPopupToggle = document.querySelector('.popup-edit__toggle');
+
+const inputName = document.querySelector('.form__field_type_name');
+const inputAbout = document.querySelector('.form__field_type_about');
+
+const editForm = document.querySelector('.form_edit');
 
 const cardPopupToggle = document.querySelector('.popup-card__toggle');
 const cardPopup = document.querySelector('.popup_card');
@@ -45,10 +46,10 @@ const addButton = document.querySelector('.profile__add-button');
 const addPopup = document.querySelector('.popup_add');
 const addPopupToggle = document.querySelector('.popup-add__toggle');
 
-const inputCardName = document.querySelector('.add-form__field_type_card-name');
-const inputLink = document.querySelector('.add-form__field_type_link');
+const inputCardName = document.querySelector('.form__field_type_card-name');
+const inputLink = document.querySelector('.form__field_type_link');
 
-const addForm = document.querySelector('.add-form');
+const addForm = document.querySelector('.form_add');
 
 const cardTemplate = document.querySelector('#new-card').content;
 const cardGallery = document.querySelector('.gallery__list');
@@ -89,8 +90,13 @@ editForm.addEventListener('submit', handleFormSubmit);
 // add new card function
 let cardElement;
 
-function createNewCard() {
+function createNewCard(link, name) {
     cardElement = cardTemplate.cloneNode(true);
+
+    cardElement.querySelector('.card__name').textContent = name;
+    cardElement.querySelector('.card__image').src = link;
+    cardElement.querySelector('.card__image').alt = name;
+
     // put like:
     const likeNewButton = cardElement.querySelector('.card__like');
     likeNewButton.addEventListener('click', (event) => {
@@ -115,10 +121,7 @@ function createNewCard() {
 
 //showing 6 initial cards:
   initialCards.forEach(function (element) {
-    createNewCard();
-    cardElement.querySelector('.card__name').textContent = element.name;
-    cardElement.querySelector('.card__image').src = element.link;
-    cardElement.querySelector('.card__image').alt = element.name;
+    createNewCard(element.link, element.name);
     cardGallery.append(cardElement);
   });
 
@@ -126,10 +129,7 @@ function createNewCard() {
 // add new card button:
 function handleAddFormSubmit (evt) {
     evt.preventDefault();
-    createNewCard();
-    cardElement.querySelector('.card__image').src = inputLink.value;
-    cardElement.querySelector('.card__name').textContent = inputCardName.value;
-    cardElement.querySelector('.card__image').alt = inputCardName.value;
+    createNewCard(inputLink.value, inputCardName.value);
     cardGallery.prepend(cardElement); 
     closeAddPopup();
     addForm.reset(); 

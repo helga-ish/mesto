@@ -1,4 +1,4 @@
-.add-form__button {
+.form-button {
     width: 358px;
     height: 50px;
     font-weight: 400;
@@ -17,12 +17,12 @@
     padding: 0;
 }
   
-.add-form__button:hover {
+.form-button:hover {
     opacity: .8;
 }
 
 @media screen and (max-width: 600px) {
-    .add-form__button {
+    .form-button {
         width: 238px;
         height: 46px;
         font-size: 14px;
