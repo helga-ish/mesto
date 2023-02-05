@@ -11,11 +11,7 @@
 @import url(../blocks/popup/_active/popup_active.css);
 @import url(../blocks/popup/_card/popup_card.css);
 @import url(../blocks/popup/__container/popup__container.css);
-
-@import url(../blocks/popup-edit/__toggle/popup-edit__toggle.css);
-
-
-@import url(../blocks/popup-add/__toggle/popup-add__toggle.css);
+@import url(../blocks/popup/__toggle/popup__toggle.css);
 
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__heading/form__heading.css);
