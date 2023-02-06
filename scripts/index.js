@@ -33,13 +33,10 @@ const profileAbout = document.querySelector('.profile__field-about');
 
 const editPopup = document.querySelector('#popup-edit');
 const editPopupToggle = editPopup.querySelector('.popup__toggle');
+const editForm = editPopup.querySelector('.form');
 
 const inputName = document.querySelector('.form__field_type_name');
 const inputAbout = document.querySelector('.form__field_type_about');
-
-const forms = document.forms;
-const editForm = forms.editForm;
-const addForm = forms.addForm;
 
 
 const cardPopupToggle = document.querySelector('.popup-card__toggle');
@@ -48,6 +45,7 @@ const cardPopup = document.querySelector('.popup_card');
 const addButton = document.querySelector('.profile__add-button');
 const addPopup = document.querySelector('#popup-add');
 const addPopupToggle = addPopup.querySelector('.popup__toggle');
+const addForm = addPopup.querySelector('.form');
 
 const inputCardName = document.querySelector('.form__field_type_card-name');
 const inputLink = document.querySelector('.form__field_type_link');
