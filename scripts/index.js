@@ -152,3 +152,14 @@ addPopupToggle.addEventListener('click', closeAddPopup);
 cardPopupToggle.addEventListener('click', function() {
     closePopup(cardPopup);
 });
+
+// close popups with escape
+const popupList = document.querySelectorAll('.popup');
+popupList.forEach(popup => {
+  document.addEventListener('keydown', function(evt) {
+    if (evt.key === 'Escape' && popup.classList.contains('popup_active')) {
+        closePopup(popup);
+      };
+    });
+});
+
