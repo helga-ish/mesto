@@ -40,7 +40,7 @@ const inputAbout = document.querySelector('.form__field_type_about');
 
 
 const cardPopupToggle = document.querySelector('.popup-card__toggle');
-const cardPopup = document.querySelector('.popup_card');
+const cardPopup = document.querySelector('#popup-card');
 
 const addButton = document.querySelector('.profile__add-button');
 const addPopup = document.querySelector('#popup-add');
