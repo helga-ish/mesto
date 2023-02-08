@@ -153,13 +153,17 @@ cardPopupToggle.addEventListener('click', function() {
     closePopup(cardPopup);
 });
 
-// close popups with escape
+// close popups with escape and overlay click
 const popupList = document.querySelectorAll('.popup');
 popupList.forEach(popup => {
   document.addEventListener('keydown', function(evt) {
     if (evt.key === 'Escape' && popup.classList.contains('popup_active')) {
         closePopup(popup);
       };
-    });
+  });
+  document.addEventListener('click', function(evt) {
+    if (evt.target == popup) {
+      closePopup(popup);
+    };
+  });
 });
-
