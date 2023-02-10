@@ -35,11 +35,13 @@
         <section class="popup" id="popup-edit">
             <div class="popup__container">
                 <button class="popup__toggle" type="button"></button>
-                <form class="form" name="editForm">
+                <form class="form" name="editForm" novalidate>
                     <h2 class="form__heading">Редактировать профиль</h2>
                     <fieldset class="form__fields">
-                        <input type="text" class="form__field form__field_type_name" name="inputName" placeholder="Имя">
-                        <input type="text" class="form__field form__field_type_about" name="inputAbout" placeholder="Обо мне">
+                        <input type="text" class="form__field form__field_type_name" id="name-input" name="inputName" placeholder="Имя" minlength="2" maxlength="40" required>
+                        <span class='form__field-error name-input-error'></span>
+                        <input type="text" class="form__field form__field_type_about" id="about-input" name="inputAbout" placeholder="Обо мне" minlength="2" maxlength="200" required>
+                        <span class='form__field-error about-input-error'></span>
                     </fieldset>
                     <button type="submit" class="form-button">Сохранить</button>
                 </form>
@@ -49,11 +51,13 @@
         <section class="popup" id="popup-add">
             <div class="popup__container">
                 <button class="popup__toggle" type="button"></button>
-                <form class="form" name="addForm">
+                <form class="form" name="addForm" novalidate>
                     <h2 class="form__heading">Новое место</h2>
                     <fieldset class="form__fields">
-                        <input type="text" class="form__field form__field_type_card-name" name="inputCardName" placeholder="Название">
-                        <input type="text" class="form__field form__field_type_link" name="inputLink" placeholder="Ссылка">
+                        <input type="text" class="form__field form__field_type_card-name" id="card-name-input" name="inputCardName" placeholder="Название" minlength="2" maxlength="30" required>
+                        <span class='form__field-error card-name-input-error'></span>
+                        <input type="url" class="form__field form__field_type_link" id="link-input" name="inputLink" placeholder="Ссылка" required>
+                        <span class='form__field-error link-input-error'></span>
                     </fieldset>
                     <button type="submit" class="form-button">Отправить</button>
                 </form>

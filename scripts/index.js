@@ -51,7 +51,6 @@ const inputCardName = document.querySelector('.form__field_type_card-name');
 const inputLink = document.querySelector('.form__field_type_link');
 
 
-
 const cardTemplate = document.querySelector('#new-card').content;
 const cardGallery = document.querySelector('.gallery__list');
 
@@ -167,3 +166,71 @@ popupList.forEach(popup => {
     };
   });
 });
+
+//  edit form validation: 
+// если не проходит валидацию - красная строка, красный текст, неактивная кнопка
+// настройки валидации - оба поля обязательны, имя - 2-40 символов, о себе - 2-200 символов
+
+const showFieldError = (formEl, inputEl, errorMessage) => {
+  const errorEl = formEl.querySelector(`.${inputEl.id}-error`);
+  inputEl.classList.add('form__field_type_error');
+  errorEl.textContent = errorMessage;
+  errorEl.classList.add('form__field-error_active');
+};
+
+const hideFieldError = (formEl, inputEl) => {
+    const errorEl = formEl.querySelector(`.${inputEl.id}-error`);
+    inputEl.classList.remove('form__field_type_error');
+    errorEl.classList.remove('form__field-error_active');
+    errorEl.textContent = '';
+  };
+
+const checkInputValidity = (formEl, inputEl) => {
+      if (!inputEl.validity.valid) {
+        showFieldError(formEl, inputEl, inputEl.validationMessage);
+      } else {
+        hideFieldError(formEl, inputEl);
+      }
+    };
+
+const hasInvalidInput = (fieldList) => {
+  return fieldList.some((inputEl) => {
+    return !inputEl.validity.valid;
+  });
+};
+
+// const toggleButtonState = (fieldList, buttonEl) => {
+//   if (hasInvalidInput(fieldList)) {
+//     buttonEl.classList.add('form-button_inactive');
+//   } else {
+//     buttonEl.classList.remove('form-button_inactive');
+//   };
+// };
+
+const setEventListeners = (formEl) => {
+  const fieldList = Array.from(formEl.querySelectorAll('.form__field'));
+  // const buttonEl = formEl.querySelectorAll('.form-button');
+  // buttonEl.forEach((button) => {
+  //   toggleButtonState(fieldList, button);
+  // });
+  fieldList.forEach((inputEl) => {
+    inputEl.addEventListener('input', function () {
+      checkInputValidity(formEl, inputEl);
+      // toggleButtonState(fieldList, buttonEl);
+    });
+  });
+};
+
+const enableValidation = () => {
+  const formList = Array.from(document.querySelectorAll('.form'));
+    formList.forEach((formEl) => {
+      formEl.addEventListener('submit', function(evt) {
+        evt.preventDefault();
+      });
+      const fieldsetList = Array.from(formEl.querySelectorAll('.form__fields'));
+     fieldsetList.forEach((fieldset) => {
+       setEventListeners(fieldset);
+     });
+    });
+};
+enableValidation();
