@@ -199,24 +199,24 @@ const hasInvalidInput = (fieldList) => {
   });
 };
 
-// const toggleButtonState = (fieldList, buttonEl) => {
-//   if (hasInvalidInput(fieldList)) {
-//     buttonEl.classList.add('form-button_inactive');
-//   } else {
-//     buttonEl.classList.remove('form-button_inactive');
-//   };
-// };
+const toggleButtonState = (fieldList, buttonEl) => {
+  if (hasInvalidInput(fieldList)) {
+    buttonEl.classList.add('form-button_inactive');
+  } else {
+    buttonEl.classList.remove('form-button_inactive');
+  };
+};
 
 const setEventListeners = (formEl) => {
   const fieldList = Array.from(formEl.querySelectorAll('.form__field'));
-  // const buttonEl = formEl.querySelectorAll('.form-button');
-  // buttonEl.forEach((button) => {
-  //   toggleButtonState(fieldList, button);
-  // });
+  const editButtonEl = editForm.querySelector('.form-button');
+  const addButtonEl = addForm.querySelector('.form-button');
+  toggleButtonState(fieldList, addButtonEl);
   fieldList.forEach((inputEl) => {
     inputEl.addEventListener('input', function () {
       checkInputValidity(formEl, inputEl);
-      // toggleButtonState(fieldList, buttonEl);
+      toggleButtonState(fieldList, editButtonEl);
+      toggleButtonState(fieldList, addButtonEl);
     });
   });
 };
