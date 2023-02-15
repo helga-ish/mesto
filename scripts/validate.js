@@ -31,6 +31,7 @@ const showFieldError = (formEl, inputEl, errorMessage) => {
   const toggleButtonState = (fieldList, buttonEl) => {
     if (hasInvalidInput(fieldList)) {
       buttonEl.classList.add(allSelectors.inactiveButtonClass);
+      buttonEl.classList.add(allSelectors.inactiveButtonClass.disabled);
     } else {
       buttonEl.classList.remove(allSelectors.inactiveButtonClass);
     };
@@ -38,14 +39,14 @@ const showFieldError = (formEl, inputEl, errorMessage) => {
   
   const setEventListeners = (formEl) => {
     const fieldList = Array.from(formEl.querySelectorAll(allSelectors.formFieldSelector));
-    const editButtonEl = editForm.querySelector(allSelectors.buttonSelector);
-    const addButtonEl = addForm.querySelector(allSelectors.buttonSelector);
-    toggleButtonState(fieldList, addButtonEl);
+    const submitButtonEl = Array.from(formEl.querySelectorAll(allSelectors.buttonSelector));
+    submitButtonEl.forEach(button => {
+        toggleButtonState(fieldList, button);
+    });
     fieldList.forEach((inputEl) => {
       inputEl.addEventListener('input', function () {
         checkInputValidity(formEl, inputEl);
-        toggleButtonState(fieldList, editButtonEl);
-        toggleButtonState(fieldList, addButtonEl);
+        toggleButtonState(fieldList, submitButtonEl);
       });
     });
   };

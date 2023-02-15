@@ -1,6 +1,6 @@
 .form__fields {
     max-width: 358px;
-    margin: 54px auto 48px auto;
+    margin: 54px auto 18px auto;
     border: 0;
     padding: 0;
   }
@@ -9,6 +9,6 @@
     .form__fields {
         max-width: 238px;
         margin-top: 78px;
-        margin-bottom: 45px;
+        margin-bottom: 15px;
     }
 }
