@@ -1,7 +1,7 @@
 .card {
     list-style: none;
     min-height: 361px;
-    width: 100%;
+    max-width: 282px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;

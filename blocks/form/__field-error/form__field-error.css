@@ -1,10 +1,10 @@
 .form__field-error {
+    position: relative;
     font-weight: 400;
     font-size: 12px;
     line-height: 15px;
     color: red;
     margin: 0;
-    margin-bottom: 30px;
     padding: 0;
     opacity: 0;
     transition: 0.2s;
