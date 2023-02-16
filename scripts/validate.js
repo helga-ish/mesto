@@ -31,18 +31,17 @@ const showFieldError = (formEl, inputEl, errorMessage) => {
   const toggleButtonState = (fieldList, buttonEl) => {
     if (hasInvalidInput(fieldList)) {
       buttonEl.classList.add(allSelectors.inactiveButtonClass);
-      buttonEl.classList.add(allSelectors.inactiveButtonClass.disabled);
+      buttonEl.disabled = true;
     } else {
       buttonEl.classList.remove(allSelectors.inactiveButtonClass);
+      buttonEl.disabled = false;
     };
   };
   
   const setEventListeners = (formEl) => {
     const fieldList = Array.from(formEl.querySelectorAll(allSelectors.formFieldSelector));
-    const submitButtonEl = Array.from(formEl.querySelectorAll(allSelectors.buttonSelector));
-    submitButtonEl.forEach(button => {
-        toggleButtonState(fieldList, button);
-    });
+    const submitButtonEl = (formEl.parentNode).querySelector(allSelectors.buttonSelector);
+    toggleButtonState(fieldList, submitButtonEl);
     fieldList.forEach((inputEl) => {
       inputEl.addEventListener('input', function () {
         checkInputValidity(formEl, inputEl);
@@ -56,6 +55,7 @@ const showFieldError = (formEl, inputEl, errorMessage) => {
       formList.forEach((formEl) => {
         formEl.addEventListener('submit', function(evt) {
           evt.preventDefault();
+
         });
         const fieldsetList = Array.from(formEl.querySelectorAll(allSelectors.formFieldsetSelector));
        fieldsetList.forEach((fieldset) => {

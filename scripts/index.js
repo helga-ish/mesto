@@ -46,6 +46,7 @@ const addButton = document.querySelector('.profile__add-button');
 const addPopup = document.querySelector('#popup-add');
 const addPopupToggle = addPopup.querySelector('.popup__toggle');
 const addForm = addPopup.querySelector('.form');
+const addFormButton = addForm.querySelector('.form-button');
 
 const inputCardName = document.querySelector('.form__field_type_card-name');
 const inputLink = document.querySelector('.form__field_type_link');
@@ -60,9 +61,11 @@ const cardPopupHeading = cardPopup.querySelector('.popup-card__heading');
 // function for opening and closing popups
 function openPopup(popup) {
     popup.classList.add('popup_active');
+    document.addEventListener('keydown', closePopupEscape);
 };
 function closePopup(popup) {
     popup.classList.remove('popup_active');
+    document.removeEventListener('keydown', closePopupEscape);
 };
 
 // open and close edit popup
@@ -93,9 +96,10 @@ let cardElement;
 function createNewCard(link, name) {
     cardElement = cardTemplate.cloneNode(true);
 
+    const cardElementImage = cardElement.querySelector('.card__image');
     cardElement.querySelector('.card__name').textContent = name;
-    cardElement.querySelector('.card__image').src = link;
-    cardElement.querySelector('.card__image').alt = name;
+    cardElementImage.src = link;
+    cardElementImage.alt = name;
 
     // put like:
     const likeNewButton = cardElement.querySelector('.card__like');
@@ -108,7 +112,6 @@ function createNewCard(link, name) {
         this.parentNode.remove();
     });
     // open new card popup:
-    const cardElementImage = cardElement.querySelector('.card__image');
     cardElementImage.addEventListener('click', function(event) {
         openPopup(cardPopup);
         cardPopupImage.src = event.target.src;
@@ -138,12 +141,15 @@ addForm.addEventListener('submit', handleAddFormSubmit);
 
 // open and close addPopup:
 function openAddPopup() {
+    addFormButton.disabled = true;
+    addFormButton.classList.add('form-button_inactive');
     openPopup(addPopup);
 };
 addButton.addEventListener('click', openAddPopup);
 
 function closeAddPopup() {
     closePopup(addPopup);
+    addForm.reset();
 };
 addPopupToggle.addEventListener('click', closeAddPopup);
 
@@ -155,14 +161,16 @@ cardPopupToggle.addEventListener('click', function() {
 // close popups with escape and overlay click
 const popupList = document.querySelectorAll('.popup');
 popupList.forEach(popup => {
-  document.addEventListener('keydown', function(evt) {
-    if (evt.key === 'Escape' && popup.classList.contains('popup_active')) {
-        closePopup(popup);
-      };
-  });
-  document.addEventListener('click', function(evt) {
+  popup.addEventListener('click', function(evt) {
     if (evt.target == popup) {
       closePopup(popup);
     };
   });
 });
+
+function closePopupEscape(evt) {
+  if (evt.key === 'Escape') {
+    closePopup(document.querySelector('.popup_active'));
+  };
+};
+
