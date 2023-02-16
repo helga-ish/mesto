@@ -2,8 +2,8 @@
     color: #FFFFFF;
     margin: 23px 0 0 30px;
     display: grid;
-    width: 336px;
-    grid-template-columns: auto auto;
+    max-width: 336px;
+    grid-template-columns: auto 24px;
     grid-template-rows: 1fr 1fr;
     row-gap: 7px;
 
