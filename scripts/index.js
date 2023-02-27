@@ -26,6 +26,43 @@ const initialCards = [
     }
   ];
 
+// create card
+  class Card {
+    constructor(name, link) {
+        this._name = name;
+        this._link = link;
+    }
+    
+    _getTemplate() {
+      const cardElement = document
+      .querySelector('#new-card')
+      .content
+      .querySelector('.card')
+      .cloneNode(true);
+      
+      return cardElement;
+    }
+
+    generateCard() {
+      this._element = this._getTemplate();
+      const cardElementImage = this._element.querySelector('.card__image');
+      cardElementImage.src = this._link;
+      cardElementImage.alt = this._name;
+      this._element.querySelector('.card__name').textContent = this._name;
+  
+    return this._element;
+    }
+}
+
+// initial cards
+initialCards.forEach((card) => {
+  const newCard = new Card(card.name, card.link);
+  const cardElement = newCard.generateCard();
+
+  document.querySelector('.gallery__list').append(cardElement);
+});
+
+
 // initialisation:
 const editButton = document.querySelector('.profile__edit-button');
 const profileName = document.querySelector('.profile__field-name');
@@ -52,8 +89,8 @@ const inputCardName = document.querySelector('.form__field_type_card-name');
 const inputLink = document.querySelector('.form__field_type_link');
 
 
-const cardTemplate = document.querySelector('#new-card').content;
-const cardGallery = document.querySelector('.gallery__list');
+// const cardTemplate = document.querySelector('#new-card').content;
+// const cardGallery = document.querySelector('.gallery__list');
 
 const cardPopupImage = cardPopup.querySelector('.popup-card__image');
 const cardPopupHeading = cardPopup.querySelector('.popup-card__heading');
@@ -90,43 +127,43 @@ function handleFormSubmit (evt) {
 }
 editForm.addEventListener('submit', handleFormSubmit);
 
-// add new card function
-let cardElement;
+// // add new card function
+// let cardElement;
 
-function createNewCard(link, name) {
-    cardElement = cardTemplate.cloneNode(true);
+// function createNewCard(link, name) {
+//     cardElement = cardTemplate.cloneNode(true);
 
-    const cardElementImage = cardElement.querySelector('.card__image');
-    cardElement.querySelector('.card__name').textContent = name;
-    cardElementImage.src = link;
-    cardElementImage.alt = name;
+//     const cardElementImage = cardElement.querySelector('.card__image');
+//     cardElement.querySelector('.card__name').textContent = name;
+//     cardElementImage.src = link;
+//     cardElementImage.alt = name;
 
-    // put like:
-    const likeNewButton = cardElement.querySelector('.card__like');
-    likeNewButton.addEventListener('click', (event) => {
-        event.target.classList.toggle("card__like_active");
-    });
-    // remove card:
-    const removeNewButton = cardElement.querySelector('.card__remove');
-    removeNewButton.addEventListener('click', function() {
-        this.parentNode.remove();
-    });
-    // open new card popup:
-    cardElementImage.addEventListener('click', function(event) {
-        openPopup(cardPopup);
-        cardPopupImage.src = event.target.src;
-        cardPopupImage.alt = event.target.alt;
-        cardPopupHeading.textContent = event.target.alt;
-    });
+//     // put like:
+//     const likeNewButton = cardElement.querySelector('.card__like');
+//     likeNewButton.addEventListener('click', (event) => {
+//         event.target.classList.toggle("card__like_active");
+//     });
+//     // remove card:
+//     const removeNewButton = cardElement.querySelector('.card__remove');
+//     removeNewButton.addEventListener('click', function() {
+//         this.parentNode.remove();
+//     });
+//     // open new card popup:
+//     cardElementImage.addEventListener('click', function(event) {
+//         openPopup(cardPopup);
+//         cardPopupImage.src = event.target.src;
+//         cardPopupImage.alt = event.target.alt;
+//         cardPopupHeading.textContent = event.target.alt;
+//     });
 
-    return cardElement;
-};
+//     return cardElement;
+// };
 
-//showing 6 initial cards:
-  initialCards.forEach(function (element) {
-    createNewCard(element.link, element.name);
-    cardGallery.append(cardElement);
-  });
+// //showing 6 initial cards:
+//   initialCards.forEach(function (element) {
+//     createNewCard(element.link, element.name);
+//     cardGallery.append(cardElement);
+//   });
 
 
 // add new card button:
