@@ -1,3 +1,5 @@
+import { Card } from './Card.js';
+
 // initial cards: 
 const initialCards = [
     {
@@ -25,34 +27,6 @@ const initialCards = [
       link: 'https://images.unsplash.com/photo-1554797589-7241bb691973?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1036&q=80'
     }
   ];
-
-// create card
-  class Card {
-    constructor(name, link) {
-        this._name = name;
-        this._link = link;
-    }
-    
-    _getTemplate() {
-      const cardElement = document
-      .querySelector('#new-card')
-      .content
-      .querySelector('.card')
-      .cloneNode(true);
-      
-      return cardElement;
-    }
-
-    generateCard() {
-      this._element = this._getTemplate();
-      const cardElementImage = this._element.querySelector('.card__image');
-      cardElementImage.src = this._link;
-      cardElementImage.alt = this._name;
-      this._element.querySelector('.card__name').textContent = this._name;
-  
-    return this._element;
-    }
-}
 
 // initial cards
 initialCards.forEach((card) => {
@@ -211,3 +185,4 @@ function closePopupEscape(evt) {
   };
 };
 
+export { openPopup, cardPopup, cardPopupHeading, cardPopupImage };
