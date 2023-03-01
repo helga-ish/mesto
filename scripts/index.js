@@ -28,15 +28,6 @@ const initialCards = [
     }
   ];
 
-// initial cards
-initialCards.forEach((card) => {
-  const newCard = new Card(card.name, card.link);
-  const cardElement = newCard.generateCard();
-
-  document.querySelector('.gallery__list').append(cardElement);
-});
-
-
 // initialisation:
 const editButton = document.querySelector('.profile__edit-button');
 const profileName = document.querySelector('.profile__field-name');
@@ -64,7 +55,7 @@ const inputLink = document.querySelector('.form__field_type_link');
 
 
 // const cardTemplate = document.querySelector('#new-card').content;
-// const cardGallery = document.querySelector('.gallery__list');
+const cardGallery = document.querySelector('.gallery__list');
 
 const cardPopupImage = cardPopup.querySelector('.popup-card__image');
 const cardPopupHeading = cardPopup.querySelector('.popup-card__heading');
@@ -100,6 +91,14 @@ function handleFormSubmit (evt) {
     closeEditPopup();
 }
 editForm.addEventListener('submit', handleFormSubmit);
+
+// initial cards
+initialCards.forEach((card) => {
+  const newCard = new Card(card.name, card.link);
+  const cardElement = newCard.generateCard();
+
+  cardGallery.append(cardElement);
+});
 
 // // add new card function
 // let cardElement;
@@ -143,7 +142,8 @@ editForm.addEventListener('submit', handleFormSubmit);
 // add new card button:
 function handleAddFormSubmit (evt) {
     evt.preventDefault();
-    createNewCard(inputLink.value, inputCardName.value);
+    const newCard = new Card(inputCardName.value, inputLink.value);
+    const cardElement = newCard.generateCard();
     cardGallery.prepend(cardElement); 
     closeAddPopup();
     addForm.reset(); 
