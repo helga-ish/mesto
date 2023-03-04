@@ -1,4 +1,5 @@
 import { Card } from './Card.js';
+import { FormValidator } from './FormValidator.js';
 
 // initial cards: 
 const initialCards = [
@@ -184,5 +185,22 @@ function closePopupEscape(evt) {
     closePopup(document.querySelector('.popup_active'));
   };
 };
+
+const allSelectors = {
+  formSelector: '.form',
+  formFieldsetSelector: '.form__fields',
+  formFieldSelector: '.form__field',
+  buttonSelector: '.form-button',
+  inactiveButtonClass: 'form-button_inactive',
+  activeErrorClass: 'form__field-error_active',
+  formFieldTypeErrorClass: 'form__field_type_error',
+};
+
+// validate forms
+const formLists = document.querySelectorAll('.form');
+formLists.forEach((form) => {
+  const validator = new FormValidator(allSelectors, form);
+  validator.enableValidation();
+});
 
 export { openPopup, cardPopup, cardPopupHeading, cardPopupImage };
