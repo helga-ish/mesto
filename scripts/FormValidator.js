@@ -1,7 +1,9 @@
 class FormValidator {
-  constructor(object, form) {
+  constructor(object, form, fieldList, submitButton) {
     this._object = object;
     this._form = form;
+    this._fieldList = fieldList;
+    this._submitButton = submitButton;
   }
 
   _showFieldError = (inputEl, errorMessage) => {
@@ -26,30 +28,30 @@ class FormValidator {
         }
       };
   
-  _hasInvalidInput = (fieldList) => {
-    return fieldList.some((inputEl) => {
+  _hasInvalidInput = () => {
+    return this._fieldList.some((inputEl) => {
       return !inputEl.validity.valid;
     });
   };
   
-  _toggleButtonState = (fieldList, buttonEl) => {
-    if (this._hasInvalidInput(fieldList)) {
-      buttonEl.classList.add(this._object.inactiveButtonClass);
-      buttonEl.disabled = true;
+  _toggleButtonState = () => {
+    if (this._hasInvalidInput()) {
+      this._submitButton.classList.add(this._object.inactiveButtonClass);
+      this._submitButton.disabled = true;
     } else {
-      buttonEl.classList.remove(this._object.inactiveButtonClass);
-      buttonEl.disabled = false;
+      this._submitButton.classList.remove(this._object.inactiveButtonClass);
+      this._submitButton.disabled = false;
     };
   };
   
   _setEventListeners = () => {
-    const fieldList = Array.from(this._form.querySelectorAll(this._object.formFieldSelector));
-    const submitButtonEl = (this._form.parentNode).querySelector(this._object.buttonSelector);
-    this._toggleButtonState(fieldList, submitButtonEl);
-    fieldList.forEach((inputEl) => {
+    this._fieldList = Array.from(this._form.querySelectorAll(this._object.formFieldSelector));
+    this._submitButton = (this._form.parentNode).querySelector(this._object.buttonSelector);
+    this._toggleButtonState();
+    this._fieldList.forEach((inputEl) => {
       inputEl.addEventListener('input', () => {
         this._checkInputValidity(inputEl);
-        this._toggleButtonState(fieldList, submitButtonEl);
+        this._toggleButtonState();
       });
     });
   };

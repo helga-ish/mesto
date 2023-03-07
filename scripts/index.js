@@ -147,52 +147,16 @@ const allSelectors = {
 };
 
 // validate forms
-const formLists = document.querySelectorAll('.form');
-formLists.forEach((form) => {
-  const validator = new FormValidator(allSelectors, form);
-  validator.enableValidation();
+const formValidators = {};
+const enableValidation = (allSelectors) => {
+  const formList = Array.from(document.querySelectorAll(allSelectors.formSelector));
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(allSelectors, formElement);
+    const formName = formElement.getAttribute('name');
+    formValidators[formName] = validator;
+    validator.enableValidation();
 });
+};
+enableValidation(allSelectors);
 
 export { openPopup, cardPopup, cardPopupHeading, cardPopupImage };
-
-
-
-
-
-// // add new card function
-// let cardElement;
-
-// function createNewCard(link, name) {
-//     cardElement = cardTemplate.cloneNode(true);
-
-//     const cardElementImage = cardElement.querySelector('.card__image');
-//     cardElement.querySelector('.card__name').textContent = name;
-//     cardElementImage.src = link;
-//     cardElementImage.alt = name;
-
-//     // put like:
-//     const likeNewButton = cardElement.querySelector('.card__like');
-//     likeNewButton.addEventListener('click', (event) => {
-//         event.target.classList.toggle("card__like_active");
-//     });
-//     // remove card:
-//     const removeNewButton = cardElement.querySelector('.card__remove');
-//     removeNewButton.addEventListener('click', function() {
-//         this.parentNode.remove();
-//     });
-//     // open new card popup:
-//     cardElementImage.addEventListener('click', function(event) {
-//         openPopup(cardPopup);
-//         cardPopupImage.src = event.target.src;
-//         cardPopupImage.alt = event.target.alt;
-//         cardPopupHeading.textContent = event.target.alt;
-//     });
-
-//     return cardElement;
-// };
-
-// //showing 6 initial cards:
-//   initialCards.forEach(function (element) {
-//     createNewCard(element.link, element.name);
-//     cardGallery.append(cardElement);
-//   });
