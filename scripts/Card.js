@@ -2,16 +2,18 @@ import { openPopup, cardPopup, cardPopupHeading, cardPopupImage } from './index.
 
 // create card
 class Card {
-    constructor(name, link, like, remove) {
-        this._name = name;
-        this._link = link;
-        this._like = like;
-        this._remove = remove;
+    constructor(data, templateSelector) {
+        this._name = data.name;
+        this._link = data.link;
+        this._likeButton = data.likeButton;
+        this._removeButton = data.removeButton;
+        this._cardImage = data.cardImage;
+        this._templateSelector = templateSelector;
     }
     
     _getTemplate() {
       const cardElement = document
-      .querySelector('#new-card')
+      .querySelector(this._templateSelector)
       .content
       .querySelector('.card')
       .cloneNode(true);
@@ -21,10 +23,13 @@ class Card {
 
     generateCard() {
       this._element = this._getTemplate();
-      const cardElementImage = this._element.querySelector('.card__image');
-      cardElementImage.src = this._link;
-      cardElementImage.alt = this._name;
+      this._cardImage = this._element.querySelector('.card__image');
+      this._cardImage.src = this._link;
+      this._cardImage.alt = this._name;
       this._element.querySelector('.card__name').textContent = this._name;
+
+      this._likeButton = this._element.querySelector('.card__like');
+      this._removeButton = this._element.querySelector('.card__remove');
 
   
     this._setEventListeners();
@@ -35,12 +40,10 @@ class Card {
       this._element.querySelector('.card__image').addEventListener('click', () => {
         this._handleOpenCard();
       });
-      const likeNewButton = this._element.querySelector('.card__like');
-      likeNewButton.addEventListener('click', () => {
-        this._handlePutLike();
+      this._likeButton.addEventListener('click', (event) => {
+        this._handlePutLike(event);
       });
-      const removeNewButton =  this._element.querySelector('.card__remove');
-      removeNewButton.addEventListener('click', () => {
+      this._removeButton.addEventListener('click', () => {
         this._handleRemoveCard();
       })
 
@@ -53,7 +56,7 @@ class Card {
         cardPopupHeading.textContent = this._name;
     }
 
-    _handlePutLike() {
+    _handlePutLike(event) {
       event.target.classList.toggle("card__like_active");
     }
 
