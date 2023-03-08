@@ -46,7 +46,6 @@ const cardPopup = document.querySelector('#popup-card');
 const addButton = document.querySelector('.profile__add-button');
 const addPopup = document.querySelector('#popup-add');
 const addForm = document.forms['addForm'];
-const addFormButton = addForm.querySelector('.form-button');
 
 const inputCardName = document.querySelector('.form__field_type_card-name');
 const inputLink = document.querySelector('.form__field_type_link');
@@ -105,14 +104,12 @@ function handleAddFormSubmit (evt) {
     const cardElement = createCard(newCardObj);
     cardGallery.prepend(cardElement); 
     closePopup(addPopup);
-    addForm.reset(); 
+    formValidators['addForm'].resetValidation();
 };
 addForm.addEventListener('submit', handleAddFormSubmit);
 
 // open and close addPopup:
 function openAddPopup() {
-    addFormButton.disabled = true;
-    addFormButton.classList.add('form-button_inactive');
     openPopup(addPopup);
 };
 addButton.addEventListener('click', openAddPopup);

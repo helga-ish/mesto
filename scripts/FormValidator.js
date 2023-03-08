@@ -55,6 +55,15 @@ class FormValidator {
       });
     });
   };
+
+  resetValidation = () => {
+    this._toggleButtonState();
+    this._fieldList = Array.from(this._form.querySelectorAll(this._object.formFieldSelector));
+    this._fieldList.forEach((inputEl) => {
+      this._hideFieldError(inputEl);
+    });
+    this._form.reset();
+  };
   
   enableValidation = () => {
         this._form.addEventListener('submit', function(evt) {
