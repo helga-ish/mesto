@@ -62,7 +62,6 @@ class FormValidator {
     this._fieldList.forEach((inputEl) => {
       this._hideFieldError(inputEl);
     });
-    this._form.reset();
   };
   
   enableValidation = () => {

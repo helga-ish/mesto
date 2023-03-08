@@ -64,6 +64,7 @@ function closePopup(popup) {
 
 // open edit popup
 function openEditPopup() {
+    formValidators['editForm'].resetValidation();
     openPopup(editPopup);
     inputName.value = profileName.textContent;
     inputAbout.value = profileAbout.textContent;
@@ -109,6 +110,7 @@ function handleAddFormSubmit (evt) {
     cardGallery.prepend(cardElement); 
     closePopup(addPopup);
     formValidators['addForm'].resetValidation();
+    addForm.reset();
 };
 addForm.addEventListener('submit', handleAddFormSubmit);
 
