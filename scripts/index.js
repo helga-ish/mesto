@@ -114,6 +114,7 @@ addForm.addEventListener('submit', handleAddFormSubmit);
 
 // open and close addPopup:
 function openAddPopup() {
+    formValidators['addForm'].resetValidation();
     openPopup(addPopup);
 };
 addButton.addEventListener('click', openAddPopup);
