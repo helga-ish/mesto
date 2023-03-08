@@ -52,9 +52,6 @@ const inputLink = document.querySelector('.form__field_type_link');
 
 const cardGallery = document.querySelector('.gallery__list');
 
-const cardPopupImage = cardPopup.querySelector('.popup-card__image');
-const cardPopupHeading = cardPopup.querySelector('.popup-card__heading');
-
 // function for opening and closing popups
 function openPopup(popup) {
     popup.classList.add('popup_active');
@@ -83,8 +80,15 @@ function handleProfileFormSubmit (evt) {
 editForm.addEventListener('submit', handleProfileFormSubmit);
 
 // initial cards
+function handleCardClick(name, link) {
+  openPopup(document.querySelector('#popup-card'));
+  document.querySelector('.popup-card__image').src = link;
+  document.querySelector('.popup-card__image').alt = name;
+  document.querySelector('.popup-card__heading').textContent = name;
+};
+
 function createCard(item) {
-  const card = new Card(item, '#new-card');
+  const card = new Card(item, '#new-card', handleCardClick);
   const cardItem = card.generateCard();
   return cardItem;
 }
@@ -155,5 +159,3 @@ const enableValidation = (allSelectors) => {
 });
 };
 enableValidation(allSelectors);
-
-export { openPopup, cardPopup, cardPopupHeading, cardPopupImage };
