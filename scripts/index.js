@@ -42,6 +42,10 @@ const inputAbout = document.querySelector('.form__field_type_about');
 
 
 const cardPopup = document.querySelector('#popup-card');
+const cardPopupImage = document.querySelector('.popup-card__image');
+const cardPopupHeading = document.querySelector('.popup-card__heading');
+
+
 
 const addButton = document.querySelector('.profile__add-button');
 const addPopup = document.querySelector('#popup-add');
@@ -82,10 +86,10 @@ editForm.addEventListener('submit', handleProfileFormSubmit);
 
 // initial cards
 function handleCardClick(name, link) {
-  openPopup(document.querySelector('#popup-card'));
-  document.querySelector('.popup-card__image').src = link;
-  document.querySelector('.popup-card__image').alt = name;
-  document.querySelector('.popup-card__heading').textContent = name;
+  openPopup(cardPopup);
+  cardPopupImage.src = link;
+  cardPopupImage.alt = name;
+  cardPopupHeading.textContent = name;
 };
 
 function createCard(item) {
