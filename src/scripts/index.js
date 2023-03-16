@@ -1,6 +1,6 @@
 // import '../pages/index.css';
 import Card from './Card.js';
-import { FormValidator } from './FormValidator.js';
+import FormValidator from './FormValidator.js';
 import {
   initialCards,
   cardGallery,
@@ -21,17 +21,8 @@ import {
   profileName,
 } from './utils/constants.js';
 import Section from './Section.js';
+import PopupWithImage from './PopupWithImage.js';
 
-
-// function for opening and closing popups
-function openPopup(popup) {
-    popup.classList.add('popup_active');
-    document.addEventListener('keydown', closePopupEscape);
-};
-function closePopup(popup) {
-    popup.classList.remove('popup_active');
-    document.removeEventListener('keydown', closePopupEscape);
-};
 
 // open edit popup
 function openEditPopup() {
@@ -52,15 +43,23 @@ function handleProfileFormSubmit (evt) {
 editForm.addEventListener('submit', handleProfileFormSubmit);
 
 // initial cards
-function handleCardClick(name, link) {
-  openPopup(cardPopup);
-  cardPopupImage.src = link;
-  cardPopupImage.alt = name;
-  cardPopupHeading.textContent = name;
-};
+// const handleCardClick = () => {
+//   cardPopupPreview.openPopup();
+//   // cardPopupImage.src = link;
+//   // cardPopupImage.alt = name;
+//   // cardPopupHeading.textContent = name;
+// };
+
+const cardPopupPreview = new PopupWithImage(cardPopup);
+
 
 function createCard(item) {
-  const card = new Card(item, '#new-card', handleCardClick);
+  const card = new Card({
+    data: item,
+    handleCardClick: (link, name) => {
+      cardPopupPreview.openPopup(link, name);
+    }
+  }, '#new-card');
   const cardItem = card.generateCard();
   return cardItem;
 }
@@ -74,11 +73,6 @@ const initialCardList = new Section(
     }
   }, cardGallery);
   initialCardList.renderer();
-
-// initialCards.forEach((card) => {
-//   const cardElement = createCard(card);
-//   cardGallery.append(cardElement);
-// });
 
 // add new card button:
 function handleAddFormSubmit (evt) {
@@ -103,23 +97,18 @@ function openAddPopup() {
 addButton.addEventListener('click', openAddPopup);
 
 // close all popups with escape and overlay click
-const popupList = document.querySelectorAll('.popup');
-popupList.forEach(popup => {
-  popup.addEventListener('mousedown', (evt) => {
-    if (evt.target.classList.contains('popup_active')) {
-      closePopup(popup);
-    };
-    if(evt.target.classList.contains('popup__toggle')) {
-      closePopup(popup);
-    };
-  });
-});
+// const popupList = document.querySelectorAll('.popup');
+// popupList.forEach(popup => {
+//   popup.addEventListener('mousedown', (evt) => {
+//     if (evt.target.classList.contains('popup_active')) {
+//       closePopup(popup);
+//     };
+//     if(evt.target.classList.contains('popup__toggle')) {
+//       closePopup(popup);
+//     };
+//   });
+// });
 
-function closePopupEscape(evt) {
-  if (evt.key === 'Escape') {
-    closePopup(document.querySelector('.popup_active'));
-  };
-};
 
 const allSelectors = {
   formSelector: '.form',

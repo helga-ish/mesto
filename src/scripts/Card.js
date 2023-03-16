@@ -1,13 +1,13 @@
 // create card
 export default class Card {
-    constructor(data, templateSelector, handleCardClick) {
+    constructor({data, handleCardClick}, templateSelector) {
         this._name = data.name;
         this._link = data.link;
         this._likeButton = data.likeButton;
         this._removeButton = data.removeButton;
         this._cardImage = data.cardImage;
-        this._templateSelector = templateSelector;
         this._handleCardClick = handleCardClick;
+        this._templateSelector = templateSelector;
     }
     
     _getTemplate() {
@@ -37,7 +37,7 @@ export default class Card {
 
     _setEventListeners() {
       this._cardImage.addEventListener('click', () => {
-        this._handleCardClick(this._name, this._link);
+        this._handleCardClick(this._link, this._name);
       });
       this._likeButton.addEventListener('click', (event) => {
         this._handlePutLike(event);
