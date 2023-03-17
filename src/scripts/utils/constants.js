@@ -52,3 +52,13 @@ export const inputCardName = document.querySelector('.form__field_type_card-name
 export const inputLink = document.querySelector('.form__field_type_link');
 
 export const cardGallery = document.querySelector('.gallery__list');
+
+export const allSelectors = {
+  formSelector: '.form',
+  formFieldsetSelector: '.form__fields',
+  formFieldSelector: '.form__field',
+  buttonSelector: '.form-button',
+  inactiveButtonClass: 'form-button_inactive',
+  activeErrorClass: 'form__field-error_active',
+  formFieldTypeErrorClass: 'form__field_type_error',
+};
