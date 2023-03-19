@@ -55,7 +55,6 @@ const initialCardList = new Section(
     popupSelector: editPopup,
     handleFormSubmit: (object) => {
       userInfo.setUserInfo(object);
-      profileFormPopup.setInputValues(object);
       profileName.textContent = object.inputName;
       profileAbout.textContent = object.inputAbout;
       profileFormPopup.closePopup();
@@ -74,7 +73,6 @@ const initialCardList = new Section(
     const infoObj = userInfo.getUserInfo();
     inputName.value = infoObj.name;
     inputAbout.value = infoObj.about;
-    console.log(infoObj);
   });
   
 
