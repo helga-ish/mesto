@@ -37,12 +37,9 @@ export const editForm = document.forms['editForm'];
 export const inputName = document.querySelector('.form__field_type_name');
 export const inputAbout = document.querySelector('.form__field_type_about');
 
-
 export const cardPopup = document.querySelector('#popup-card');
 export const cardPopupImage = document.querySelector('.popup-card__image');
 export const cardPopupHeading = document.querySelector('.popup-card__heading');
-
-
 
 export const addButton = document.querySelector('.profile__add-button');
 export const addPopup = document.querySelector('#popup-add');

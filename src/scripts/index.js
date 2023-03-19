@@ -11,9 +11,7 @@ import {
   inputName,
   editButton,
   editPopup,
-  editForm,
   addButton,
-  addForm,
   addPopup,
   profileAbout,
   profileName,
@@ -22,6 +20,7 @@ import {
 import Section from './Section.js';
 import PopupWithImage from './PopupWithImage.js';
 import PopupWithForm from './PopupWithForm.js';
+import UserInfo from './UserInfo.js';
 
 // making card popup
 const cardPopupPreview = new PopupWithImage(cardPopup);
@@ -54,17 +53,28 @@ const initialCardList = new Section(
   const profileFormPopup = new PopupWithForm(
     {
     popupSelector: editPopup,
-    handleFormSubmit: () => {
-      profileName.textContent = inputName.value;
-      profileAbout.textContent = inputAbout.value;
-      // formInputs[0] = inputName.value;
-      // formInputs[1] = inputAbout.value;
+    handleFormSubmit: (object) => {
+      userInfo.setUserInfo(object);
+      profileFormPopup.setInputValues(object);
+      profileName.textContent = object.inputName;
+      profileAbout.textContent = object.inputAbout;
       profileFormPopup.closePopup();
     }
   });
 
+  // filling form with user data
+  const userInfo = new UserInfo(
+    {
+    userNameSelector: profileName.textContent,
+    userAboutSelector: profileAbout.textContent
+  });
+
   editButton.addEventListener('click', () => {
     profileFormPopup.openPopup();
+    const infoObj = userInfo.getUserInfo();
+    inputName.value = infoObj.name;
+    inputAbout.value = infoObj.about;
+    console.log(infoObj);
   });
   
 
