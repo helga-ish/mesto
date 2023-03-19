@@ -4,7 +4,7 @@
   "description": "__Главная идея__ проекта - продемонстрировать полученные студентом навыки, а именно создать профиль пользователя, которые можно редактировать, и галлерею, в которую можно добавлять фото и названия мест, в которых пользователь побывал.",
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf dist && webpack --mode production",
+    "build": "webpack --mode production",
     "dev": "webpack serve"
   },
   "author": "Helga Ish",
@@ -13,6 +13,8 @@
     "@babel/core": "^7.21.3",
     "@babel/preset-env": "^7.20.2",
     "babel-loader": "^9.1.2",
+    "clean-webpack-plugin": "^4.0.0",
+    "html-webpack-plugin": "^5.5.0",
     "webpack": "^5.76.2",
     "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^4.13.1"
