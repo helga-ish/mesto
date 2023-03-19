@@ -57,6 +57,8 @@ const initialCardList = new Section(
     handleFormSubmit: () => {
       profileName.textContent = inputName.value;
       profileAbout.textContent = inputAbout.value;
+      // formInputs[0] = inputName.value;
+      // formInputs[1] = inputAbout.value;
       profileFormPopup.closePopup();
     }
   });
@@ -77,7 +79,6 @@ const addCardPopup = new PopupWithForm({
     };
     const newCard = createCard(newCardObj);
     cardGallery.prepend(newCard);
-    console.log(newCard);
     addCardPopup.closePopup()
   }
 });
