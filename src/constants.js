@@ -28,21 +28,16 @@ export const initialCards = [
 
 // initialisation:
 export const editButton = document.querySelector('.profile__edit-button');
-export const profileName = document.querySelector('.profile__field-name');
-export const profileAbout = document.querySelector('.profile__field-about');
 
-export const editPopup = document.querySelector('#popup-edit');
 export const editForm = document.forms['editForm'];
 
 export const inputName = document.querySelector('.form__field_type_name');
 export const inputAbout = document.querySelector('.form__field_type_about');
 
-export const cardPopup = document.querySelector('#popup-card');
 export const cardPopupImage = document.querySelector('.popup-card__image');
 export const cardPopupHeading = document.querySelector('.popup-card__heading');
 
 export const addButton = document.querySelector('.profile__add-button');
-export const addPopup = document.querySelector('#popup-add');
 export const addForm = document.forms['addForm'];
 
 export const inputCardName = document.querySelector('.form__field_type_card-name');
