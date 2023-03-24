@@ -53,6 +53,7 @@ const initialCardList = new Section(
       profileFormPopup.closePopup();
     }
   });
+  profileFormPopup.setEventListeners();
 
   // filling form with user data
   const userInfo = new UserInfo(
@@ -63,6 +64,7 @@ const initialCardList = new Section(
 
   editButton.addEventListener('click', () => {
     profileFormPopup.openPopup();
+    formValidators['editForm'].resetValidation();
     const infoObj = userInfo.getUserInfo();
     inputName.value = infoObj.name;
     inputAbout.value = infoObj.about;
@@ -74,6 +76,7 @@ const initialCardList = new Section(
 const addCardPopup = new PopupWithForm({
   popupSelector: '#popup-add',
   handleFormSubmit: () => {
+    formValidators['addForm'].resetValidation();
     const newCardObj = {
       name: inputCardName.value,
       link: inputLink.value,
@@ -83,8 +86,11 @@ const addCardPopup = new PopupWithForm({
     addCardPopup.closePopup()
   }
 });
+addCardPopup.setEventListeners();
+
 addButton.addEventListener('click', () => {
   addCardPopup.openPopup();
+  formValidators['addForm'].resetValidation();
 });
 
 
