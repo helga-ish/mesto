@@ -1,5 +1,4 @@
 import Popup from "./Popup.js";
-import { formValidators } from "./index.js";
 
 export default class PopupWithForm extends Popup {
     constructor({popupSelector, handleFormSubmit}) {
@@ -24,16 +23,14 @@ export default class PopupWithForm extends Popup {
             evt.preventDefault();
             const objectWithValues = this._getInputValues();
             this._handleFormSubmit(objectWithValues);
-        }, { once: true });
+            this._formSelector.reset();
+        });
     }
 
     openPopup() {
         super.openPopup();
-        formValidators[this._formSelector.getAttribute('name')].resetValidation();
     }
     closePopup() {
         super.closePopup();
-        this._formSelector.reset();
-        formValidators[this._formSelector.getAttribute('name')].resetValidation();
     }
 }
