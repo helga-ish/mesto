@@ -19,13 +19,14 @@ import UserInfo from './UserInfo.js';
 
 // making card popup
 const cardPopupPreview = new PopupWithImage('#popup-card');
+cardPopupPreview.setEventListeners();
 
 // creating card
 function createCard(item) {
   const card = new Card({
     data: item,
-    handleCardClick: (link, name) => {
-      cardPopupPreview.openPopup(link, name);
+    handleCardClick: (name, link) => {
+      cardPopupPreview.openPopup(name, link);
     }
   }, '#new-card');
   const cardItem = card.generateCard();
@@ -75,11 +76,11 @@ const initialCardList = new Section(
 
 const addCardPopup = new PopupWithForm({
   popupSelector: '#popup-add',
-  handleFormSubmit: () => {
+  handleFormSubmit: (object) => {
     formValidators['addForm'].resetValidation();
     const newCardObj = {
-      name: inputCardName.value,
-      link: inputLink.value,
+      name: object.inputCardName,
+      link: object.inputLink,
     };
     const newCard = createCard(newCardObj);
     cardGallery.prepend(newCard);
