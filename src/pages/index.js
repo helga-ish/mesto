@@ -5,8 +5,6 @@ import {
   initialCards,
   cardGallery,
   inputAbout,
-  inputCardName,
-  inputLink,
   inputName,
   editButton,
   addButton,
