@@ -46,7 +46,7 @@ const initialCardList = new Section(
 
   const profileFormPopup = new PopupWithForm(
     {
-    popupSelector: '#popup-edit',
+    popupElement: '#popup-edit',
     handleFormSubmit: (object) => {
       userInfo.setUserInfo(object);
       profileFormPopup.closePopup();
@@ -57,8 +57,8 @@ const initialCardList = new Section(
   // filling form with user data
   const userInfo = new UserInfo(
     {
-    userNameSelector: '.profile__field-name',
-    userAboutSelector: '.profile__field-about'
+    userName: '.profile__field-name',
+    userAbout: '.profile__field-about'
   });
 
   editButton.addEventListener('click', () => {
@@ -73,15 +73,21 @@ const initialCardList = new Section(
 // opening add card popup
 
 const addCardPopup = new PopupWithForm({
-  popupSelector: '#popup-add',
+  popupElement: '#popup-add',
   handleFormSubmit: (object) => {
     formValidators['addForm'].resetValidation();
-    const newCardObj = {
-      name: object.inputCardName,
-      link: object.inputLink,
-    };
-    const newCard = createCard(newCardObj);
-    cardGallery.prepend(newCard);
+    const newCards = new Section(
+      {
+        items: [{
+          name: object.inputCardName,
+          link: object.inputLink
+        }],
+        renderer: (item) => {
+          const cardElement = createCard(item);
+          newCards.addItem(cardElement);
+        }
+      }, '.gallery__list');
+      newCards.renderer();
     addCardPopup.closePopup()
   }
 });
