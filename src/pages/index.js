@@ -1,9 +1,8 @@
 import './index.css';
+import Api from '../components/api.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import {
-  initialCards,
-  cardGallery,
   inputAbout,
   inputName,
   editButton,
@@ -30,17 +29,6 @@ function createCard(item) {
   const cardItem = card.generateCard();
   return cardItem;
 }
-
-// showing initial cards
-const initialCardList = new Section(
-  {
-    items: initialCards,
-    renderer: (item) => {
-      const cardElement = createCard(item);
-      initialCardList.addItem(cardElement);
-    }
-  }, '.gallery__list');
-  initialCardList.renderer();
 
 // opening profile popup
 
@@ -111,3 +99,30 @@ const enableValidation = (allSelectors) => {
 });
 };
 enableValidation(allSelectors);
+
+
+const api = new Api({
+  url: 'https://mesto.nomoreparties.co/v1/cohort-62/cards',
+  headers: {
+    'content-type': 'application/json',
+    Authorization: '4471ba4a-88e3-4225-a99c-10facf8d16dd'
+  }
+
+})
+
+// showing initial cards
+
+const initialCardItems = api.getInitialCards();
+initialCardItems
+.then((data) => {
+  const initialCardList = new Section(
+    {
+      items: data,
+      renderer: (item) => {
+        const cardElement = createCard(item);
+        initialCardList.addItem(cardElement);
+      }
+    }, '.gallery__list');
+    initialCardList.renderer();
+})
+.catch(err => alert(err));
