@@ -14,6 +14,14 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 
+const api = new Api({
+  url: 'https://mesto.nomoreparties.co/v1/cohort-62/',
+  headers: {
+    Authorization: '4471ba4a-88e3-4225-a99c-10facf8d16dd',
+    'content-type': 'application/json'
+  }
+})
+
 // making card popup
 const cardPopupPreview = new PopupWithImage('#popup-card');
 cardPopupPreview.setEventListeners();
@@ -35,8 +43,17 @@ function createCard(item) {
   const profileFormPopup = new PopupWithForm(
     {
     popupElement: '#popup-edit',
-    handleFormSubmit: () => {
+    handleFormSubmit: (object) => {
+      userInfo.setUserInfo(object);
       profileFormPopup.closePopup();
+    },
+    changeInfo: (data) => {
+      api.changeProfileUserInfo(data)
+      .then((data) => {
+      userInfo.setUserInfo(data);
+      console.log(data);
+      })
+      .catch(err => console.log(err))
     }
   });
   profileFormPopup.setEventListeners();
@@ -101,15 +118,6 @@ const enableValidation = (allSelectors) => {
 enableValidation(allSelectors);
 
 
-const api = new Api({
-  url: 'https://mesto.nomoreparties.co/v1/cohort-62/',
-  headers: {
-    'content-type': 'application/json',
-    Authorization: '4471ba4a-88e3-4225-a99c-10facf8d16dd'
-  }
-
-})
-
 // showing initial cards
 
 const initialCardItems = api.getInitialCards();
@@ -121,7 +129,7 @@ initialCardItems
       renderer: (item) => {
         const cardElement = createCard(item);
         initialCardList.addItem(cardElement);
-      }
+      },
     }, '.gallery__list');
     initialCardList.renderer();
 })
@@ -132,6 +140,9 @@ const profileUserInfo = api.getProfileUserInfo();
 profileUserInfo
 .then((data) => {
   userInfo.setUserInfo(data);
-  console.log(data);
+  userInfo.setUserAvatar(data)
 })
 .catch(err => alert(err));
+
+// changing profile info
+
