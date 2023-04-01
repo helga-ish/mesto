@@ -8,9 +8,11 @@ import {
   editButton,
   addButton,
   editAvatarButton,
+  deleteCardButton,
   allSelectors
 } from '../components/constants.js';
 import Section from '../components/Section.js';
+import Popup from '../components/Popup.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
@@ -33,11 +35,20 @@ function createCard(item) {
     data: item,
     handleCardClick: (name, link) => {
       cardPopupPreview.openPopup(name, link);
+    },
+    handleCardDeleteIcon: () => {
+      deleteCardConfirmationPopup.openPopup();
+      
     }
   }, '#new-card');
   const cardItem = card.generateCard();
   return cardItem;
 }
+
+// opening confirmation to delete card
+const deleteCardConfirmationPopup = new Popup('#popup-delete-card');
+deleteCardConfirmationPopup.setEventListeners();
+
 
 // opening avatar popup
 const avatarFormPopup = new PopupWithForm(
