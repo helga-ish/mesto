@@ -7,6 +7,7 @@ import {
   inputName,
   editButton,
   addButton,
+  editAvatarButton,
   allSelectors
 } from '../components/constants.js';
 import Section from '../components/Section.js';
@@ -38,6 +39,30 @@ function createCard(item) {
   return cardItem;
 }
 
+// opening avatar popup
+const avatarFormPopup = new PopupWithForm(
+  {
+    popupElement: '#popup-avatar-edit',
+    handleFormSubmit: (object) => {
+      userInfo.setUserAvatar(object);
+      
+      avatarFormPopup.closePopup();
+    },
+    changeInfo: (data) => {
+      api.editAvatar(data)
+      .then((data) => {
+      userInfo.setUserAvatar(data);
+      })
+      .catch(err => console.log(err))
+    }
+  }
+);
+avatarFormPopup.setEventListeners();
+editAvatarButton.addEventListener('click', () => {
+  avatarFormPopup.openPopup();
+  formValidators['editAvatarForm'].resetValidation();
+});
+
 // opening profile popup
 
   const profileFormPopup = new PopupWithForm(
@@ -51,7 +76,6 @@ function createCard(item) {
       api.changeProfileUserInfo(data)
       .then((data) => {
       userInfo.setUserInfo(data);
-      console.log(data);
       })
       .catch(err => console.log(err))
     }
