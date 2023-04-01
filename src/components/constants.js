@@ -37,7 +37,7 @@ export const inputCardName = document.querySelector('.form__field_type_card-name
 export const inputLink = document.querySelector('.form__field_type_link');
 export const cardGallery = document.querySelector('.gallery__list');
 
-export const editAvatarButton = document.querySelector('.profile__avatar');
+export const editAvatarButton = document.querySelector('.profile__avatar-overlay');
 
 export const allSelectors = {
   formSelector: '.form',
