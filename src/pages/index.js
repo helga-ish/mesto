@@ -56,11 +56,8 @@ const avatarFormPopup = new PopupWithForm(
     popupElement: '#popup-avatar-edit',
     handleFormSubmit: (object) => {
       userInfo.setUserAvatar(object);
-      
       avatarFormPopup.closePopup();
-    },
-    changeInfo: (data) => {
-      api.editAvatar(data)
+      api.editAvatar(object)
       .then((data) => {
       userInfo.setUserAvatar(data);
       })
