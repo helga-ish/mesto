@@ -1,9 +1,10 @@
 // create card
 export default class Card {
-    constructor({data, handleCardClick}, templateSelector) {
+    constructor({data, handleCardClick, handleCardDeleteIcon}, templateSelector) {
         this._name = data.name;
         this._link = data.link;
         this._handleCardClick = handleCardClick;
+        this._handleCardDeleteIcon = handleCardDeleteIcon;
         this._templateSelector = templateSelector;
     }
     
@@ -40,7 +41,7 @@ export default class Card {
         this._handlePutLike(event);
       });
       this._removeButton.addEventListener('click', () => {
-        this._handleRemoveCard();
+        this._handleCardDeleteIcon();
       })
     }
 
@@ -51,4 +52,5 @@ export default class Card {
     _handleRemoveCard() {
       this._element.remove();
     }
+
 }
