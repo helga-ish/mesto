@@ -129,8 +129,6 @@ const addCardPopup = new PopupWithForm({
       newCards.renderer();
     addCardPopup.closePopup()
   },
-  changeInfo: () => {
-  }
 });
 addCardPopup.setEventListeners();
 
