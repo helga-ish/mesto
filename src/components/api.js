@@ -43,4 +43,19 @@ export default class Api {
             return Promise.reject('ошибка');
         });
     }
+
+    editAvatar(data) {
+        return fetch(`${this._url}users/me/avatar`, {
+            method: 'PATCH',
+            headers: this._headers,
+            body: JSON.stringify({
+                avatar: data.inputLinkAvatar
+            })
+        }).then((res) => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject('ошибка');
+        });
+    }
 }
