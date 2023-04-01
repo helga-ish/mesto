@@ -82,9 +82,7 @@ editAvatarButton.addEventListener('click', () => {
     handleFormSubmit: (object) => {
       userInfo.setUserInfo(object);
       profileFormPopup.closePopup();
-    },
-    changeInfo: (data) => {
-      api.changeProfileUserInfo(data)
+      api.changeProfileUserInfo(object)
       .then((data) => {
       userInfo.setUserInfo(data);
       })
@@ -125,10 +123,18 @@ const addCardPopup = new PopupWithForm({
         renderer: (item) => {
           const cardElement = createCard(item);
           newCards.addItem(cardElement);
+          api.addCard(item)
+          .then((item) => {
+            const cardElement = createCard(item);
+            newCards.addItem(cardElement);
+          })
+          .catch(err => console.log(err))
         }
       }, '.gallery__list');
       newCards.renderer();
     addCardPopup.closePopup()
+  },
+  changeInfo: () => {
   }
 });
 addCardPopup.setEventListeners();
