@@ -118,8 +118,6 @@ const addCardPopup = new PopupWithForm({
           link: object.inputLink
         }],
         renderer: (item) => {
-          const cardElement = createCard(item);
-          newCards.addItem(cardElement);
           api.addCard(item)
           .then((item) => {
             const cardElement = createCard(item);
