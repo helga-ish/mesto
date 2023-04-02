@@ -8,13 +8,12 @@ import {
   editButton,
   addButton,
   editAvatarButton,
-  deleteCardButton,
   allSelectors
 } from '../components/constants.js';
 import Section from '../components/Section.js';
-import Popup from '../components/Popup.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithDeleteConfirmation from '../components/PopupWithDeleteConfirmation.js';
 import UserInfo from '../components/UserInfo.js';
 
 const api = new Api({
@@ -29,16 +28,24 @@ const api = new Api({
 const cardPopupPreview = new PopupWithImage('#popup-card');
 cardPopupPreview.setEventListeners();
 
-// creating card
+// creating card, opening card, deleting card + api request
 function createCard(item) {
   const card = new Card({
     data: item,
+    userId: 'e26556018c08b7b7d796fcb0',
     handleCardClick: (name, link) => {
       cardPopupPreview.openPopup(name, link);
     },
     handleCardDeleteIcon: () => {
       deleteCardConfirmationPopup.openPopup();
-      
+      deleteCardConfirmationPopup.handleDeleteSubmit(() => {
+        api.deleteCard(item._id)
+        .then(() => {
+          card.handleRemoveCard();
+        })
+        .catch(err => console.log(err));
+        deleteCardConfirmationPopup.closePopup();
+      })
     }
   }, '#new-card');
   const cardItem = card.generateCard();
@@ -46,11 +53,10 @@ function createCard(item) {
 }
 
 // opening confirmation to delete card
-const deleteCardConfirmationPopup = new Popup('#popup-delete-card');
+const deleteCardConfirmationPopup = new PopupWithDeleteConfirmation('#popup-delete-card');
 deleteCardConfirmationPopup.setEventListeners();
 
-
-// opening avatar popup
+// opening avatar popup, filling avatar, sending api request
 const avatarFormPopup = new PopupWithForm(
   {
     popupElement: '#popup-avatar-edit',
@@ -71,7 +77,7 @@ editAvatarButton.addEventListener('click', () => {
   formValidators['editAvatarForm'].resetValidation();
 });
 
-// opening profile popup
+// opening profile popup, filling profile, sending api request
 
   const profileFormPopup = new PopupWithForm(
     {
@@ -79,6 +85,7 @@ editAvatarButton.addEventListener('click', () => {
     handleFormSubmit: (object) => {
       userInfo.setUserInfo(object);
       profileFormPopup.closePopup();
+
       api.changeProfileUserInfo(object)
       .then((data) => {
       userInfo.setUserInfo(data);
@@ -93,7 +100,7 @@ editAvatarButton.addEventListener('click', () => {
     {
     userName: '.profile__field-name',
     userAbout: '.profile__field-about',
-    userAvatar: '.profile__avatar'
+    userAvatar: '.profile__avatar',
   });
 
   editButton.addEventListener('click', () => {
@@ -105,7 +112,7 @@ editAvatarButton.addEventListener('click', () => {
   });
   
 
-// opening add card popup
+// opening add card popup, adding card, sending api request
 
 const addCardPopup = new PopupWithForm({
   popupElement: '#popup-add',
@@ -178,5 +185,4 @@ profileUserInfo
 })
 .catch(err => alert(err));
 
-// changing profile info
 
