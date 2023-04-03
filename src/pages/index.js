@@ -41,9 +41,9 @@ function createCard(item) {
       deleteCardConfirmationPopup.handleDeleteSubmit(() => {
         api.deleteCard(item._id)
         .then(() => {
-          card.handleRemoveCard();
+          card.handleRemoveCard(true);
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log(`Ошибка удаления карточки: ${err}`));
         deleteCardConfirmationPopup.closePopup();
       })
     },
@@ -52,7 +52,6 @@ function createCard(item) {
       .then((data) => {
         console.log(data);
         item.likes.length = data.likes.length;
-        // card.handlePutLike();
         card.showLikesQuantity();
       })
       .catch(err => console.log(`Ошибка изменения статуса лайка: ${err}`));
@@ -77,7 +76,8 @@ const avatarFormPopup = new PopupWithForm(
       .then((data) => {
       userInfo.setUserAvatar(data);
       })
-      .catch(err => console.log(err))
+      .catch(err => console.log(`Ошибка изменения аватара: ${err}`))
+      .finally(() => avatarFormPopup.renderLoading(false, 'Сохранить'));
     }
   }
 );
@@ -100,7 +100,8 @@ editAvatarButton.addEventListener('click', () => {
       .then((data) => {
       userInfo.setUserInfo(data);
       })
-      .catch(err => console.log(err))
+      .catch(err => console.log(`Ошибка изменения данных профиля: ${err}`))
+      .finally(() => profileFormPopup.renderLoading(false, 'Сохранить'));
     }
   });
   profileFormPopup.setEventListeners();
@@ -140,7 +141,8 @@ const addCardPopup = new PopupWithForm({
             const cardElement = createCard(item);
             newCards.addItem(cardElement);
           })
-          .catch(err => console.log(err))
+          .catch(err => console.log(`Ошибка добавления новой карточки: ${err}`))
+          .finally(() => addCardPopup.renderLoading(false, 'Отправить'));
         }
       }, '.gallery__list');
       newCards.renderer();
@@ -184,7 +186,7 @@ initialCardItems
     }, '.gallery__list');
     initialCardList.renderer();
 })
-.catch(err => alert(err));
+.catch(err => console.log(`Ошибка загрузки карточек с сервера: ${err}`));
 
 // showing profile info
 const profileUserInfo = api.getProfileUserInfo();
@@ -193,6 +195,6 @@ profileUserInfo
   userInfo.setUserInfo(data);
   userInfo.setUserAvatar(data)
 })
-.catch(err => alert(err));
+.catch(err => console.log(`Ошибка загрузки данных пользователя с сервера: ${err}`));
 
 
