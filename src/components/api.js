@@ -4,15 +4,19 @@ export default class Api {
         this._headers = config.headers;
     }
 
+    _promiseResponse(res) {
+        if (res.ok) {
+            return res.json();
+        }
+        return Promise.reject('Произошла ошибка');
+    }
+
     getInitialCards() {
         return fetch(`${this._url}cards`, {
         method: 'GET',
         headers: this._headers,
     }).then((res) => {
-        if (res.ok) {
-            return res.json();
-        }
-        return Promise.reject('Произошла ошибка');
+        return this._promiseResponse(res);
     });
     }
 
@@ -21,10 +25,7 @@ export default class Api {
             method: 'GET',
             headers: this._headers,
         }).then((res) => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject('Произошла ошибка');
+            return this._promiseResponse(res);
         });
     }
 
@@ -37,10 +38,7 @@ export default class Api {
                 about: data.inputAbout
             })
         }).then((res) => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject('ошибка');
+            return this._promiseResponse(res);
         });
     }
 
@@ -52,10 +50,7 @@ export default class Api {
                 avatar: data.inputLinkAvatar
             })
         }).then((res) => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject('ошибка');
+            return this._promiseResponse(res);
         });
     }
 
@@ -68,10 +63,7 @@ export default class Api {
                 link: data.link
             })
         }).then((res) => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject('ошибка');
+            return this._promiseResponse(res);
         });
     }
 
@@ -80,12 +72,16 @@ export default class Api {
             method: 'DELETE',
             headers: this._headers,
         }).then((res) => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject('ошибка');
+            return this._promiseResponse(res);
         });
     }
 
-    
+    changeLikeStatus(cardId, like) {
+        return fetch(`${this._url}cards/${cardId}/likes`, {
+            method: like ? 'PUT' : 'DELETE',
+            headers: this._headers,
+        }).then((res) => {
+            return this._promiseResponse(res);
+        });
+    }
 }
