@@ -46,6 +46,16 @@ function createCard(item) {
         .catch(err => console.log(err));
         deleteCardConfirmationPopup.closePopup();
       })
+    },
+    handleLikeToggle: () => {
+      api.changeLikeStatus(item._id, !card.isLiked())
+      .then((data) => {
+        console.log(data);
+        item.likes.length = data.likes.length;
+        // card.handlePutLike();
+        card.showLikesQuantity();
+      })
+      .catch(err => console.log(`Ошибка изменения статуса лайка: ${err}`));
     }
   }, '#new-card');
   const cardItem = card.generateCard();
