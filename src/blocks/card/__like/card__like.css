@@ -10,8 +10,9 @@
     cursor: pointer;
     background-position: center;
     background-repeat: no-repeat;
-    margin-left: 30px;
     transition: opacity .4s;
+    margin-top: 22px;
+    margin-bottom: 3px;
 }
 .card__like:hover {
     opacity: .5;
