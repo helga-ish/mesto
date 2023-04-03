@@ -7,9 +7,11 @@
 .popup_active{opacity:1;transition-delay:0s;visibility:visible}
 .popup_card{background-color:rgba(0,0,0,.8)}
 .popup__container{background-color:#fff;border-radius:10px;margin:auto;max-width:430px;min-height:330px;position:relative}@media screen and (max-width:600px){.popup__container{max-width:282px;min-height:322px}}
+.popup__container_type_delete{min-height:181px}@media screen and (max-width:600px){.popup__container_type_delete{min-height:173px}}
 .popup__toggle{background-color:transparent;background-image:url(2ceb783afbab75916ddc.svg);background-size:cover;border:none;cursor:pointer;height:32px;outline:none;padding:0;position:absolute;right:-40px;top:-40px;transition:opacity .4s;width:32px}.popup__toggle:hover{opacity:.6}@media screen and (max-width:600px){.popup__toggle{height:20px;right:0;top:-36px;width:20px}}
 .form{height:100%;width:100%}
 .form__heading{color:#000;font-size:24px;font-weight:900;line-height:29px;margin:34px 0 0 36px}@media screen and (max-width:600px){.form__heading{font-size:18px;line-height:22px;margin-left:22px;margin-top:25px}}
+.form__heading_type_delete{margin-bottom:38px}
 .form__fields{border:0;margin:54px auto 13px;max-width:358px;padding:0}@media screen and (max-width:600px){.form__fields{margin-bottom:15px;margin-top:78px;max-width:238px}}
 .form__field{background-color:transparent;border:0;border-bottom:1px solid rgba(0,0,0,.2);box-sizing:border-box;color:#000;font-family:inherit;font-size:14px;font-weight:400;height:24px;line-height:17px;margin:0;overflow:hidden;padding:0 0 13px;text-overflow:ellipsis;white-space:nowrap;width:100%}
 .form__field-error{box-sizing:border-box;color:red;display:block;font-size:12px;font-weight:400;line-height:15px;margin:5px 0 0;min-height:30px;opacity:0;padding:0;transition:.2s}
@@ -18,7 +20,9 @@
 .form-button{background-color:#000;border:none;color:#fff;cursor:pointer;font-size:18px;font-weight:400;height:50px;line-height:22px;margin:0 36px 37px;padding:0;text-align:center;transition:opacity .4s;width:358px}.form-button:hover{opacity:.8}@media screen and (max-width:600px){.form-button{font-size:14px;height:46px;line-height:17px;margin-bottom:25px;margin-left:22px;width:238px}}
 .form-button_inactive{background-color:#e5e5e5;color:#000;pointer-events:none}
 .profile{display:grid;grid-template-columns:120px auto auto;margin:0 auto 47px;max-width:880px}@media screen and (max-width:920px){.profile{margin-left:19px;margin-right:19px}}@media screen and (max-width:700px){.profile{align-content:center;display:flex;flex-direction:column;flex-wrap:wrap;margin-bottom:36px}}
-.profile__avatar{border-radius:50%;height:120px;-o-object-fit:cover;object-fit:cover;width:120px}@media screen and (max-width:700px){.profile__avatar{align-self:center;display:flex;margin-bottom:26px}}
+.profile__avatar{border-radius:50%;height:120px;-o-object-fit:cover;object-fit:cover;position:absolute;width:120px;z-index:0}@media screen and (max-width:700px){.profile__avatar{align-self:center;display:flex;margin-bottom:26px}}
+.profile__container{position:relative}
+.profile__avatar-overlay{background-image:url(a086f758840ae814ecde.svg);background-position:50%;background-repeat:no-repeat;border-radius:50%;cursor:pointer;height:120px;left:0;-o-object-fit:cover;object-fit:cover;opacity:0;position:absolute;top:0;transition:opacity .4s;width:120px;z-index:1}.profile__avatar-overlay:hover{background-color:#000;opacity:.8}
 .profile__info{color:#fff;display:grid;grid-template-columns:auto 24px;grid-template-rows:1fr 1fr;margin:23px 0 0 30px;max-width:336px;row-gap:7px}@media screen and (max-width:700px){.profile__info{grid-template-rows:auto auto;margin:0;max-width:282px}}
 .profile__field-name{font-size:42px;font-weight:500;line-height:48px;margin:0;overflow:hidden;padding:0;text-overflow:ellipsis;white-space:nowrap}@media screen and (max-width:700px){.profile__field-name{font-size:27px;line-height:33px;text-align:center}}
 .profile__field-about{font-size:18px;font-weight:400;grid-column-end:3;grid-column-start:1;line-height:22px;margin:0;overflow:hidden;padding:0;text-overflow:ellipsis;white-space:nowrap}@media screen and (max-width:700px){.profile__field-about{font-size:14px;line-height:17px;text-align:center}}
@@ -29,9 +33,11 @@
 .card{background-color:#fff;border-radius:10px;display:flex;flex-direction:column;list-style:none;max-width:282px;min-height:361px;position:relative}
 .card__container{display:flex;justify-content:space-between;margin:auto 20px auto 21px}
 .card__image{border-radius:10px 10px 0 0;height:282px;max-width:100%;-o-object-fit:cover;object-fit:cover;-o-object-position:center;object-position:center}
-.card__like{align-self:center;background-color:#fff;background-image:url(87ed371465c7a6a1cd01.svg);background-position:50%;background-repeat:no-repeat;border:none;cursor:pointer;display:flex;height:19px;margin-left:30px;outline:none;transition:opacity .4s;width:22px}.card__like:hover{opacity:.5}
+.card__like{align-self:center;background-color:#fff;background-image:url(87ed371465c7a6a1cd01.svg);background-position:50%;background-repeat:no-repeat;border:none;cursor:pointer;display:flex;height:19px;margin-bottom:3px;margin-top:22px;outline:none;transition:opacity .4s;width:22px}.card__like:hover{opacity:.5}
+.card__like-container{display:flex;flex-direction:column;margin-left:30px;width:22px}
+.card__like-count{color:#000;font-size:13px;font-weight:400;height:13px;line-height:16px;margin:auto auto 22px;text-align:center;width:10px}
 .card__like_active{background-image:url(fe17a515669479b1e649.svg)}
-.card__name{color:#000;font-size:24px;font-weight:900;line-height:29px;overflow:hidden;padding:0;text-overflow:ellipsis;white-space:nowrap}
+.card__name{color:#000;font-size:24px;font-weight:900;line-height:29px;margin-top:25px;max-width:186px;overflow:hidden;padding:0;text-overflow:ellipsis;white-space:nowrap}
 .card__remove{background-color:transparent;background-image:url(823b0cf1b0b7e9cb7cad.svg);background-position:50%;background-repeat:no-repeat;border:none;cursor:pointer;height:19px;outline:none;position:absolute;right:20px;top:20px;transition:opacity .4s;width:18px}.card__remove:hover{opacity:.5}
 .popup-card{border-radius:10px;margin:auto;max-width:-moz-fit-content;max-width:fit-content;min-height:-moz-fit-content;min-height:fit-content;position:relative}
 .popup-card__heading{background-color:transparent;color:#fff;font-size:12px;font-weight:400;line-height:15px;margin:0;padding-top:10px;text-align:left}
