@@ -59,8 +59,10 @@ export default class Card {
     }
     
 
-    handleRemoveCard() {
-      this._element.remove();
+    handleRemoveCard(isOwner) {
+      if(isOwner) {
+        this._element.remove();
+      }
     }
 
     showLikesQuantity() {
