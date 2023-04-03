@@ -70,6 +70,7 @@ const avatarFormPopup = new PopupWithForm(
   {
     popupElement: '#popup-avatar-edit',
     handleFormSubmit: (object) => {
+      formValidators['editAvatarForm'].resetValidation();
       userInfo.setUserAvatar(object);
       avatarFormPopup.closePopup();
       api.editAvatar(object)
