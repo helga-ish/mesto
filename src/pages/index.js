@@ -65,29 +65,6 @@ function createCard(item) {
 const deleteCardConfirmationPopup = new PopupWithDeleteConfirmation('#popup-delete-card');
 deleteCardConfirmationPopup.setEventListeners();
 
-// opening avatar popup, filling avatar, sending api request
-const avatarFormPopup = new PopupWithForm(
-  {
-    popupElement: '#popup-avatar-edit',
-    handleFormSubmit: (object) => {
-      formValidators['editAvatarForm'].resetValidation();
-      api.editAvatar(object)
-      .then((data) => {
-      userInfo.setUserAvatar(data);
-      userInfo.setUserAvatar(object);
-      avatarFormPopup.closePopup();
-      })
-      .catch(err => console.log(`Ошибка изменения аватара: ${err}`))
-      .finally(() => avatarFormPopup.renderLoading(false, 'Сохранить'));
-    }
-  }
-);
-avatarFormPopup.setEventListeners();
-editAvatarButton.addEventListener('click', () => {
-  avatarFormPopup.openPopup();
-  formValidators['editAvatarForm'].resetValidation();
-});
-
 // opening profile popup, filling profile, sending api request
 
   const profileFormPopup = new PopupWithForm(
@@ -121,31 +98,53 @@ editAvatarButton.addEventListener('click', () => {
     inputName.value = infoObj.name;
     inputAbout.value = infoObj.about;
   });
-  
 
-// opening add card popup, adding card, sending api request
+// showing initial cards
+const initialCardItems = api.getInitialCards();
+
+// showing profile info
+const profileUserInfo = api.getProfileUserInfo();
+
+// rendering cards:
+
+const cardList = new Section(
+  {
+    renderItems: (item) => {
+      const cardElement = createCard(item);
+      cardList.render(cardElement);
+    },
+  }, '.gallery__list');
+
+
+// uniting promises
+
+Promise.all([profileUserInfo, initialCardItems])
+  .then(([userData, cards]) => {
+    userInfo.setUserInfo(userData);
+    userInfo.setUserAvatar(userData);
+    cardList.renderCards(cards);
+  })
+  .catch((error) => {
+    console.error(`Ошибка загрузки данных с сервера: ${error}`);
+  });
+
+  // opening add card popup, adding card, sending api request
 
 const addCardPopup = new PopupWithForm({
   popupElement: '#popup-add',
   handleFormSubmit: (object) => {
     formValidators['addForm'].resetValidation();
-    const newCards = new Section(
-      {
-        items: [{
+    const items = {
           name: object.inputCardName,
           link: object.inputLink
-        }],
-        renderer: (item) => {
-          api.addCard(item)
+        };
+          api.addCard(items)
           .then((item) => {
             const cardElement = createCard(item);
-            newCards.addItem(cardElement);
+            cardList.render(cardElement);
           })
           .catch(err => console.log(`Ошибка добавления новой карточки: ${err}`))
           .finally(() => addCardPopup.renderLoading(false, 'Отправить'));
-        }
-      }, '.gallery__list');
-      newCards.renderer();
     addCardPopup.closePopup()
   },
 });
@@ -156,6 +155,27 @@ addButton.addEventListener('click', () => {
   formValidators['addForm'].resetValidation();
 });
 
+// opening avatar popup, filling avatar, sending api request
+const avatarFormPopup = new PopupWithForm(
+  {
+    popupElement: '#popup-avatar-edit',
+    handleFormSubmit: (object) => {
+      formValidators['editAvatarForm'].resetValidation();
+      api.editAvatar(object)
+      .then((data) => {
+      userInfo.setUserAvatar(data);
+      avatarFormPopup.closePopup();
+      })
+      .catch(err => console.log(`Ошибка изменения аватара: ${err}`))
+      .finally(() => avatarFormPopup.renderLoading(false, 'Сохранить'));
+    }
+  }
+);
+avatarFormPopup.setEventListeners();
+editAvatarButton.addEventListener('click', () => {
+  avatarFormPopup.openPopup();
+  formValidators['editAvatarForm'].resetValidation();
+});
 
 // validate forms
 export const formValidators = {};
@@ -169,35 +189,3 @@ const enableValidation = (allSelectors) => {
 });
 };
 enableValidation(allSelectors);
-
-
-// showing initial cards
-
-const initialCardItems = api.getInitialCards();
-// .catch(err => console.log(`Ошибка загрузки карточек с сервера: ${err}`));
-
-// // showing profile info
-const profileUserInfo = api.getProfileUserInfo();
-// .catch(err => console.log(`Ошибка загрузки данных пользователя с сервера: ${err}`));
-
-
-// объединение промисов
-
-
-Promise.all([profileUserInfo, initialCardItems])
-  .then(([userData, cards]) => {
-    userInfo.setUserInfo(userData);
-    userInfo.setUserAvatar(userData);
-    const initialCardList = new Section(
-      {
-        items: cards,
-        renderer: (item) => {
-          const cardElement = createCard(item);
-          initialCardList.addItem(cardElement);
-        },
-      }, '.gallery__list');
-      initialCardList.renderer();
-  })
-  .catch(error => {
-    console.error(`Ошибка загрузки карточек или данных пользователя с сервера: ${error}`);
-  });
