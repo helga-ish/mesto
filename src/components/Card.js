@@ -41,9 +41,8 @@ export default class Card {
       this._cardImage.addEventListener('click', () => {
         this._handleCardClick(this._name, this._link);
       });
-      this._likeButton.addEventListener('click', (event) => {
+      this._likeButton.addEventListener('click', () => {
         this._handleLikeToggle();
-        this._handlePutLike(event);
       });
       if (this._ownerId !== this._userId) {
         this._removeButton.remove();
@@ -54,8 +53,8 @@ export default class Card {
       this.showLikesQuantity();
     }
 
-    _handlePutLike(event) {
-      event.target.classList.toggle("card__like_active");
+    handlePutLike() {
+      this._likeButton.classList.toggle("card__like_active");
     }
     
 
