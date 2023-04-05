@@ -9,7 +9,7 @@ import {
   addButton,
   editAvatarButton,
   allSelectors
-} from '../components/constants.js';
+} from '../utils/constants.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
@@ -32,7 +32,7 @@ cardPopupPreview.setEventListeners();
 function createCard(item) {
   const card = new Card({
     data: item,
-    userId: 'e26556018c08b7b7d796fcb0',
+    userId: userInfo.getUserId(),
     handleCardClick: (name, link) => {
       cardPopupPreview.openPopup(name, link);
     },
@@ -42,15 +42,15 @@ function createCard(item) {
         api.deleteCard(item._id)
         .then(() => {
           card.handleRemoveCard(true);
+          deleteCardConfirmationPopup.closePopup();
         })
         .catch(err => console.log(`Ошибка удаления карточки: ${err}`));
-        deleteCardConfirmationPopup.closePopup();
       })
     },
     handleLikeToggle: () => {
       api.changeLikeStatus(item._id, !card.isLiked())
       .then((data) => {
-        console.log(data);
+        card.handlePutLike();
         item.likes.length = data.likes.length;
         card.showLikesQuantity();
       })
@@ -71,11 +71,11 @@ const avatarFormPopup = new PopupWithForm(
     popupElement: '#popup-avatar-edit',
     handleFormSubmit: (object) => {
       formValidators['editAvatarForm'].resetValidation();
-      userInfo.setUserAvatar(object);
-      avatarFormPopup.closePopup();
       api.editAvatar(object)
       .then((data) => {
       userInfo.setUserAvatar(data);
+      userInfo.setUserAvatar(object);
+      avatarFormPopup.closePopup();
       })
       .catch(err => console.log(`Ошибка изменения аватара: ${err}`))
       .finally(() => avatarFormPopup.renderLoading(false, 'Сохранить'));
@@ -94,12 +94,11 @@ editAvatarButton.addEventListener('click', () => {
     {
     popupElement: '#popup-edit',
     handleFormSubmit: (object) => {
-      userInfo.setUserInfo(object);
-      profileFormPopup.closePopup();
-
       api.changeProfileUserInfo(object)
       .then((data) => {
       userInfo.setUserInfo(data);
+      // userInfo.setUserInfo(object);
+      profileFormPopup.closePopup();
       })
       .catch(err => console.log(`Ошибка изменения данных профиля: ${err}`))
       .finally(() => profileFormPopup.renderLoading(false, 'Сохранить'));
@@ -175,27 +174,30 @@ enableValidation(allSelectors);
 // showing initial cards
 
 const initialCardItems = api.getInitialCards();
-initialCardItems
-.then((data) => {
-  const initialCardList = new Section(
-    {
-      items: data,
-      renderer: (item) => {
-        const cardElement = createCard(item);
-        initialCardList.addItem(cardElement);
-      },
-    }, '.gallery__list');
-    initialCardList.renderer();
-})
-.catch(err => console.log(`Ошибка загрузки карточек с сервера: ${err}`));
+// .catch(err => console.log(`Ошибка загрузки карточек с сервера: ${err}`));
 
-// showing profile info
+// // showing profile info
 const profileUserInfo = api.getProfileUserInfo();
-profileUserInfo
-.then((data) => {
-  userInfo.setUserInfo(data);
-  userInfo.setUserAvatar(data)
-})
-.catch(err => console.log(`Ошибка загрузки данных пользователя с сервера: ${err}`));
+// .catch(err => console.log(`Ошибка загрузки данных пользователя с сервера: ${err}`));
 
 
+// объединение промисов
+
+
+Promise.all([profileUserInfo, initialCardItems])
+  .then(([userData, cards]) => {
+    userInfo.setUserInfo(userData);
+    userInfo.setUserAvatar(userData);
+    const initialCardList = new Section(
+      {
+        items: cards,
+        renderer: (item) => {
+          const cardElement = createCard(item);
+          initialCardList.addItem(cardElement);
+        },
+      }, '.gallery__list');
+      initialCardList.renderer();
+  })
+  .catch(error => {
+    console.error(`Ошибка загрузки карточек или данных пользователя с сервера: ${error}`);
+  });
