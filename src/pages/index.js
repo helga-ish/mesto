@@ -74,7 +74,6 @@ deleteCardConfirmationPopup.setEventListeners();
       api.changeProfileUserInfo(object)
       .then((data) => {
       userInfo.setUserInfo(data);
-      // userInfo.setUserInfo(object);
       profileFormPopup.closePopup();
       })
       .catch(err => console.log(`Ошибка изменения данных профиля: ${err}`))
@@ -142,10 +141,10 @@ const addCardPopup = new PopupWithForm({
           .then((item) => {
             const cardElement = createCard(item);
             cardList.render(cardElement);
+            addCardPopup.closePopup()
           })
           .catch(err => console.log(`Ошибка добавления новой карточки: ${err}`))
           .finally(() => addCardPopup.renderLoading(false, 'Отправить'));
-    addCardPopup.closePopup()
   },
 });
 addCardPopup.setEventListeners();
