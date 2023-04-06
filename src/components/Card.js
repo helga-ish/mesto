@@ -51,10 +51,19 @@ export default class Card {
         this._handleCardDeleteIcon();
       })
       this.showLikesQuantity();
+      this.showLikeStatus();
     }
 
     handlePutLike() {
       this._likeButton.classList.toggle("card__like_active");
+    }
+
+    showLikeStatus() {
+      this._likes.forEach(like => {
+        if(like._id == this._userId) {
+          this._likeButton.classList.add('card__like_active');
+        } 
+      });
     }
     
 
